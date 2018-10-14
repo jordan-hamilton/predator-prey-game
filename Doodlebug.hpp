@@ -2,7 +2,7 @@
 #ifndef DOODLEBUG_HPP
 #define DOODLEBUG_HPP
 
-class Doodlebug
+class Doodlebug : public Critter
 {
 
 };
