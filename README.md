@@ -1,20 +1,15 @@
 # CS352_Group_Project
 Group project due week 6 of CS 352.
+
 Predator-Prey Game
 
 For this task, you need to work as a group to finish this project.  First, form the project group. Then discuss frequently inside the group using whatever software you like and divide the work. You must finish the program and the report on time and submit them as a zip file on Canvas.  It is challenging to work together online.  Be prepared and start early.
 
-Sign up for one group here.
-
 You can only join one group.  Each group allows 2 to 5 students.  You must sign in one group in order to get the grade.  Please also includes all the group member names in the final report (a pdf file).  Name your zip file by the group number (Group1.zip, etc.).  Each group only need to submit one copy on Canvas.  So please communicate well to avoid multiple submissions. This project is due at the end of week 6 and doesn't allow late submission.
-
- 
 
 Requirement
 
 In this lab, you will use cellular automata to create a 2D predator–prey simulation in your program.  The preys are ants and the predators are doodlebugs.
-
- 
 
 Rules:
 
@@ -31,8 +26,6 @@ Breed: If a doodlebug survives for eight time steps, at the end of the time step
 Starve: If a doodlebug has not eaten an ant within three time steps, at the end of the third time step it will starve and die. The doodlebug should then be removed from the grid of cells.
 Create a class named Critter that contains data and functions common to ants and doodlebugs. This class should have a virtual function named move that is defined in the derived classes of Ant and Doodlebug.  Each class will be in its own source file.
 
- 
-
 Game play:
 
 Initialize the world with 5 doodlebugs and 100 ants.  You will randomly place them on the grid. You will prompt the user to enter the number of time steps to run. 
@@ -43,11 +36,7 @@ You should use a dynamic array to represent the grid.  Each array element will b
 
 For debugging your program, you should save the random placement until you have everything else working properly.  In general, “random” is bad for testing and debugging. 
 
- 
-
 Extra Credit: In addition to prompting the user for the number of time steps, ask them to enter the size of the grid rows and columns, the number of ants, and the number of doodlebugs.  If you did the extra credit part, you must print a line on the screen at the beginning of your program to inform the grader that you did it.
-
- 
 
 What to submit:
 
