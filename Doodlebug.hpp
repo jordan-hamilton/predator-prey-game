@@ -4,6 +4,9 @@
 
 class Doodlebug : public Critter
 {
+private:
+
+public:
 
 };
 #endif
