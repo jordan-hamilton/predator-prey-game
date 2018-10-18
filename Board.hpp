@@ -21,9 +21,7 @@ public:
   
   void placeAnts();
   
-  void moveDoodlebugs();
-  
-  void breedDoodlebugs();
+  void placeBug(int species);
   
   void moveAnts();
   
