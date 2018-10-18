@@ -3,6 +3,9 @@
 #include "Critter.hpp"
 #include "Doodlebug.hpp"
 #include "Ant.hpp"
+
+using std::rand();
+
 /* private member variables of the class
   int numRows;
   int numCols;
@@ -26,14 +29,21 @@ Board() {
     Critter[i] = new Critter*[numCols];
   }
   
+  //Set the pointers to null
+  for (int i = 0; i < numRows; i++)
+      for (int j = 0; j < numCols; j++) {
+        bugBoard[i][j] = NULL;
+      }
+  }
+  
   //place the ants
   for (int i = 0; i < numAnts; i++) {
-    this->placeAnts();
+    this->placeBug(1);
   }
   
   //place the doodlebugs
   for (int i = 0; i < numAnts; i++) {
-    this->placeDoodlebugs();
+    this->placeBug(0);
   }
 }
   
@@ -58,17 +68,52 @@ Board(int row, int col, int ant, int doodlebug) {
   
   //place the ants
   for (int i = 0; i < numAnts; i++) {
-    this->placeAnts();
+    this->placeBug(1);
   }
   
   //place the doodlebugs
   for (int i = 0; i < numAnts; i++) {
-    this->placeDoodlebugs();
+    this->placeBug(0);
   }
 }
   
-void placeDoodlebug() {
+void placeBug(int species) {
+  int eligibleSpaces = 0;
+  int bugSpace;
   
+  //Determine how many eligible spaces are left on board
+  for (int i = 0; i < numRows; i++)
+      for (int j = 0; j < numCols; j++) {
+        if (bugBoard[i][j] == NULL) {
+          eligibleSpaces += 1;
+      }
+  }
+  
+  //Determine which eligible space to place doodlebug
+  bugSpace = rand() % eligibleSpaces + 1;
+  
+  //reset eligibleSpace counter
+  eligibleSpaces = 0;
+  
+  //Find eligible space, create doodlebug
+  for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
+        if (bugBoard[i][j] == NULL) {
+          eligibleSpaces += 1;
+          if (eligibleSpaces == bugSpace) {
+            if (species == 0) {
+              bugBoard[i][j] == new Doodlebug;
+            }
+            else if (species == 1) {
+              bugBoard[i][j] == new Ant;
+            }
+            else {
+              cout << "Invalid species call to placeBug. Expected '1' or '2'.\n";
+            }
+          }
+        }
+     }
+  }
 }
   
   
