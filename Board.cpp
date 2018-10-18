@@ -116,9 +116,6 @@ void placeBug(int species) {
   }
 }
   
-  
-  void placeAnts();
-  
   void moveDoodlebugs();
   
   void breedDoodlebugs();
