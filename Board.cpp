@@ -3,14 +3,13 @@
 #include "Critter.hpp"
 #include "Doodlebug.hpp"
 #include "Ant.hpp"
-
-class Board {
-private:
+/* private member variables of the class
   int numRows;
   int numCols;
   int numAnts;
   int numDoodlebugs;
-  Critter** bugBoard;
+  Critter*** bugBoard;
+*/
   
 public:
 
@@ -22,9 +21,9 @@ Board() {
   numDoodlebugs = 5;
 
   //dynamically allocate the bugBoard
-  bugBoard = new Critter*[numRows];
+  bugBoard = new Critter**[numRows];
   for (int i = 0; i < numRows; i++) {
-    Critter[i] = new Critter[numCols];
+    Critter[i] = new Critter*[numCols];
   }
   
   //place the ants
@@ -45,9 +44,16 @@ Board(int row, int col, int ant, int doodlebug) {
   numDoodlebugs = doodlebug;
 
   //dynamically allocate the bugBoard
-  bugBoard = new Critter*[numRows];
+  bugBoard = new Critter**[numRows];
   for (int i = 0; i < numRows; i++) {
-    Critter[i] = new Critter[numCols];
+    Critter[i] = new Critter*[numCols];
+  }
+  
+  //Set the pointers to null
+  for (int i = 0; i < numRows; i++)
+      for (int j = 0; j < numCols; j++) {
+        bugBoard[i][j] = NULL;
+      }
   }
   
   //place the ants
@@ -61,7 +67,10 @@ Board(int row, int col, int ant, int doodlebug) {
   }
 }
   
-  void placeDoodlebug();
+void placeDoodlebug() {
+  
+}
+  
   
   void placeAnts();
   
