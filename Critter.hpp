@@ -5,9 +5,18 @@
 class Critter
 {
 private:
-
+  int col;
+  int row;
+  int age;
+  
 public:
-
+  virtual void move() = 0;
+  virtual void breed() = 0;
+  virtual void starve() = 0;
+  virtual void printType() = 0;
+  void incrementAge();
+  void setAge(int a);
+  
 };
 #endif
 
