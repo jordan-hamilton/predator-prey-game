@@ -30,3 +30,5 @@ public:
   void breedAnts();
   
   void printBoard();
+
+#endif
