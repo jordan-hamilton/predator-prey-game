@@ -15,7 +15,7 @@ private:
 public:
   Board();
   
-  Board(int row, int col, int ant, int doodleBug);
+  Board(int row, int col, int ant, int doodlebug);
   
   void placeDoodlebug();
   
