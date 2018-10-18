@@ -9,12 +9,24 @@ private:
   int numRows;
   int numCols;
   int numAnts;
-  int numDoodleBugs;
+  int numDoodlebugs;
   Critter** bugBoard;
   
 public:
   Board();
+  
   Board(int row, int col, int ant, int doodleBug);
-  void placeDoodleBug();
-  void placeAnt();
-  void moveDoodleBugs
+  
+  void placeDoodlebug();
+  
+  void placeAnts();
+  
+  void moveDoodlebugs();
+  
+  void breedDoodlebugs();
+  
+  void moveAnts();
+  
+  void breedAnts();
+  
+  void printBoard();
