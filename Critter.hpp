@@ -4,7 +4,7 @@
 
 class Critter
 {
-private:
+protected:
   int col;
   int row;
   int age;
