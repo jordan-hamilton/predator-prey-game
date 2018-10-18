@@ -10,7 +10,7 @@ private:
   int numCols;
   int numAnts;
   int numDoodlebugs;
-  Critter** bugBoard;
+  Critter*** bugBoard;
   
 public:
   Board();
