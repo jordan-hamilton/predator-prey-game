@@ -126,4 +126,15 @@ void placeBug(int species) {
   
   void breedAnts();
   
-  void printBoard();
+  void printBoard() {
+    //print top border
+    for (int i = 0; i < numRows + 2; i++) {
+      cout << "-";
+    }
+    
+    for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
+        if (bugBoard[i][j] == NULL) {
+          cout << " ";
+        }
+        else if (bugBoard[i][j] == //need some sort of a returnSpecies function to ID doodlebugs/ants)
