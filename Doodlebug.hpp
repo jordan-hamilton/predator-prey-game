@@ -10,7 +10,7 @@ private:
   
 public:
   Doodlebug();
-  Doodlebug(int, int); // ints - row and column location of Doodlebug
+  Doodlebug(int r, int c); // ints - row and column location of Doodlebug
   ~Doodlebug();
   virtual void move(//add params);
   virtual void eat(//add params);
