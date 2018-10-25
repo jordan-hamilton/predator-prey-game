@@ -19,7 +19,7 @@ public:
   virtual void breed(&Board b) = 0;
   
   //return true if creature has starved (only doodlebug function)
-  virtual bool starve(&Board b) = 0;
+  virtual bool starve() = 0;
   
   //print the type of bug (for use in print board function)
   virtual void printType() = 0;
