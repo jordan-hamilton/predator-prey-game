@@ -10,13 +10,26 @@ protected:
   int age;
   
 public:
+  //move critter according to rules
   virtual void move() = 0;
-  virtual void breed() = 0;
-  virtual void starve() = 0;
-  virtual void printType() = 0;
-  void incrementAge();
-  void setAge(int a);
   
+  //breed critter according to rules
+  virtual void breed() = 0;
+  
+  //return true if creature has starved (only doodlebug function)
+  virtual bool starve() = 0;
+  
+  //print the type of bug (for use in print board function)
+  virtual void printType() = 0;
+  
+  //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
+  virtual void returnType() = 0;
+  
+  /adds 1 to the age
+  void incrementAge();
+  
+  //sets the age = to int a
+  void setAge(int a);
 };
 #endif
 
