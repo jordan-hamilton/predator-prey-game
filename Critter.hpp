@@ -11,13 +11,13 @@ protected:
   
 public:
   //move critter according to rules
-  virtual void move() = 0;
+  virtual void move(&Board b) = 0;
   
   //breed critter according to rules
-  virtual void breed() = 0;
+  virtual void breed(&Board b) = 0;
   
   //return true if creature has starved (only doodlebug function)
-  virtual bool starve() = 0;
+  virtual bool starve(&Board b) = 0;
   
   //print the type of bug (for use in print board function)
   virtual void printType() = 0;
