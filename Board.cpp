@@ -38,15 +38,16 @@ Board() {
   
   //place the ants
   for (int i = 0; i < numAnts; i++) {
-    this->placeBug(1);
+    this->placeBug(1); //1 indicates ant
   }
   
   //place the doodlebugs
   for (int i = 0; i < numAnts; i++) {
-    this->placeBug(0);
+    this->placeBug(0); //0 indicates doodlebug
   }
 }
-  
+
+//creates the initial board with input rows, columns, ants, and doodlebugs
 Board(int row, int col, int ant, int doodlebug) {
   numRows = row;
   numCols = col;
@@ -76,7 +77,8 @@ Board(int row, int col, int ant, int doodlebug) {
     this->placeBug(0);
   }
 }
-  
+
+//places a bug (0 for input for doodlebug, 1 for ant)
 void placeBug(int species) {
   int eligibleSpaces = 0;
   int bugSpace;
@@ -108,7 +110,7 @@ void placeBug(int species) {
               bugBoard[i][j] == new Ant;
             }
             else {
-              cout << "Invalid species call to placeBug. Expected '1' or '2'.\n";
+              cout << "Invalid species call to placeBug. Expected '0' or '1'. Got" << species << ".\n";
             }
           }
         }
