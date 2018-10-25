@@ -117,7 +117,7 @@ void placeBug(int species) {
      }
   }
 }
-  
+  //need some sort of a returnSpecies function to ID doodlebugs/ants before we can add these...
   void moveDoodlebugs();
   
   void breedDoodlebugs();
@@ -137,4 +137,4 @@ void placeBug(int species) {
         if (bugBoard[i][j] == NULL) {
           cout << " ";
         }
-        else if (bugBoard[i][j] == //need some sort of a returnSpecies function to ID doodlebugs/ants)
+        else if (bugBoard[i][j] == )
