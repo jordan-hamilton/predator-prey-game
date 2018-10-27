@@ -8,10 +8,10 @@ a new doodlebug in the same manner as the ant (the Doodlebug will only breed int
 Starve: If a doodlebug has not eaten an ant within three time steps, at the end of the third time
 step it will starve and die. The doodlebug should then be removed from the grid of cells. */
 
+#include <cstdlib>
 #include <iostream>
 #include "Critter.hpp"
 #include "Doodlebug.hpp"
-#include "cstdlib"
 
 using std::cout;
 using std::endl;
