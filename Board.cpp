@@ -30,7 +30,7 @@ Board() {
   }
   
   //Set the pointers to null
-  for (int i = 0; i < numRows; i++)
+  for (int i = 0; i < numRows; i++) {
       for (int j = 0; j < numCols; j++) {
         bugBoard[i][j] = NULL;
       }
@@ -61,7 +61,7 @@ Board(int row, int col, int ant, int doodlebug) {
   }
   
   //Set the pointers to null
-  for (int i = 0; i < numRows; i++)
+  for (int i = 0; i < numRows; i++) {
       for (int j = 0; j < numCols; j++) {
         bugBoard[i][j] = NULL;
       }
