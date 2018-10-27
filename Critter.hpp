@@ -27,7 +27,7 @@ public:
   //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
   virtual void returnType() = 0;
   
-  /adds 1 to the age
+  //adds 1 to the age
   void incrementAge();
   
   //sets the age = to int a
