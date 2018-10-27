@@ -152,20 +152,20 @@ void Doodlebug::move(&Board b) {
 	  }
     }
 }
-      
-  //Just here so I can copy paste
+
+/*Just here so I can copy paste
 class Doodlebug : public Critter
 {
 private:
   int lastMeal;
   bool isStarved;
-  
+
 public:
   Doodlebug::Doodlebug();
   Doodlebug(int, int); // ints - row and column location of Doodlebug
   ~Doodlebug();
   void move(&Board b) {
-  
+
   virtual void eat(//add params);
   virtual void breed(//add params);
   void starve();
@@ -173,4 +173,4 @@ public:
   int getLastMeal();
   void setLastMeal(int);
 };
-#endif
+*/
