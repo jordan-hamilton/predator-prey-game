@@ -4,6 +4,6 @@ void Critter::incrementAge() {
   age += 1;
 }
 
-void setAge(int a) {
+void Critter::setAge(int a) {
   age = a;
 }
