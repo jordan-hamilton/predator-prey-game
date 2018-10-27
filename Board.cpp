@@ -26,7 +26,7 @@ Board() {
   //dynamically allocate the bugBoard
   bugBoard = new Critter**[numRows];
   for (int i = 0; i < numRows; i++) {
-    Critter[i] = new Critter*[numCols];
+    bugBoard[i] = new Critter*[numCols];
   }
   
   //Set the pointers to null
@@ -57,7 +57,7 @@ Board(int row, int col, int ant, int doodlebug) {
   //dynamically allocate the bugBoard
   bugBoard = new Critter**[numRows];
   for (int i = 0; i < numRows; i++) {
-    Critter[i] = new Critter*[numCols];
+    bugBoard[i] = new Critter*[numCols];
   }
   
   //Set the pointers to null
