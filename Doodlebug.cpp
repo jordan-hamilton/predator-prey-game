@@ -56,21 +56,21 @@ void Doodlebug::move(&Board b) {
     }
   }
   if (row != (b.getNumRows() - 1) { // -1 because board is 0 to numRows - 1
-    else if (b[row + 1][col] != NULL) {
+    if (b[row + 1][col] != NULL) {
       if (b[row + 1][col].returnType == 1) {
         adjacentAnt = true;
       }
     }
   }
   if (col != 0) {
-    else if (b[row][col - 1] != NULL) {
+    if (b[row][col - 1] != NULL) {
       if (b[row][col - 1].returnType == 1) {
         adjacentAnt = true;
       }
     }
   }
   if (col != b.getNumCols() - 1) {
-    else if (b[row][col + 1] != NULL) {
+    if (b[row][col + 1] != NULL) {
       if (b[row][col + 1].returnType == 1) {
         adjacentAnt = true;
       }
@@ -79,88 +79,79 @@ void Doodlebug::move(&Board b) {
   
   //if there is an adjacent ant, call the eat function and eat it
   if (adjacentAnt == true) {
-    this->eat(&Board b);
+    this->eat(b);
   }
   
   //otherwise, look for open spots and take one at random
   else {
     //Check to see the number of open spots
-  if (row != 0) {
-    if (b[row - 1][col] != NULL) {
-      if (b[row - 1][col].returnType == 1) {
-        openSpots += 1;
-      }
+	  if (row != 0) {
+		if (b[row - 1][col] == NULL) {
+		  openSpots += 1;
+		}
+	  }
+	  if (row != (b.getNumRows() - 1) { // -1 because board is 0 to numRows - 1
+		if (b[row + 1][col] == NULL) {
+		  openSpots += 1;
+		}
+	  }
+	  if (col != 0) {
+		if (b[row][col - 1] == NULL) {
+			openSpots += 1;
+		}
+	  }
+	  if (col != b.getNumCols() - 1) {
+		if (b[row][col + 1] == NULL) {
+			openSpots += 1;
+		}
+	  }
+	  
+	  //if the number of open spots > 0, pick one at random.
+	  if (openSpots > 1) {
+		chosenSpot = rand() % openSpots + 1;
+	  }
+	  
+	  //if the chosenSpot is greater than 0, there is a spot to move into, move into it.
+	  if (chosenSpot > 0) {
+		if (row != 0) {
+		   if (b[row - 1][col] == NULL) {
+			  eligibleSpot += 1;
+			  if (eligibleSpot == chosenSpot) {
+				row = row - 1;
+				col = col;
+			  }
+		   }
+		}
+		if (row != (b.getNumRows() - 1) { // -1 because board is 0 to numRows - 1
+		  if (b[row + 1][col] == NULL) {
+			eligibleSpot += 1;
+			  if (eligibleSpot == chosenSpot) {
+				row = row + 1;
+				col = col;
+			  }
+		  }
+		}
+		if (col != 0) {
+		  if (b[row][col - 1] == NULL) {
+			  eligibleSpot += 1;
+			  if (eligibleSpot == chosenSpot) {
+				row = row;
+				col = col - 1;
+			  }
+		  }
+		}
+		if (col != b.getNumCols() - 1) {
+		  if (b[row][col + 1] == NULL) {
+			  eligibleSpot += 1;
+			  if (eligibleSpot == chosenSpot) {
+				row = row;
+				col = col + 1;
+			  }
+		  }
+		}
+	  }
     }
-  }
-  if (row != (b.getNumRows() - 1) { // -1 because board is 0 to numRows - 1
-    else if (b[row + 1][col] != NULL) {
-      if (b[row + 1][col].returnType == 1) {
-        openSpots += 1;
-      }
-    }
-  }
-  if (col != 0) {
-    else if (b[row][col - 1] != NULL) {
-      if (b[row][col - 1].returnType == 1) {
-        openSpots += 1;
-      }
-    }
-  }
-  if (col != b.getNumCols() - 1) {
-    else if (b[row][col + 1] != NULL) {
-      if (b[row][col + 1].returnType == 1) {
-        openSpots += 1;
-      }
-    }
-  }
-  
-  //if the number of open spots > 0, pick one at random.
-  if (openSpots > 1) {
-    chosenSpot = rand() % openSpots + 1;
-  }
-  else if (openSpots == 1) {
-    chosenSpot = 1;
-  }
-  
-  //if the chosenSpot is greater than 0, there is a spot to move into, move into it.
-  if (chosenSpot > 0) {
-    if (row != 0) {
-      if (b[row - 1][col] != NULL) {
-        if (b[row - 1][col].returnType == 1) {
-          eligibleSpot += 1;
-          if (eligibleSpot == chosenSpot) {
-            row = row - 1;
-            col = col;
-          }
-        }
-      }
-    }
-    if (row != (b.getNumRows() - 1) { // -1 because board is 0 to numRows - 1
-      else if (b[row + 1][col] != NULL) {
-        if (b[row + 1][col].returnType == 1) {
-          eligibleSpot += 1;
-          if (eligibleSpot == chosenSpot) {
-            row = row - 1;
-            col = col;
-          }
-        }
-      }
-    }
-    if (col != 0) {
-      else if (b[row][col - 1] != NULL) {
-        if (b[row][col - 1].returnType == 1) {
-          openSpots += 1;
-        }
-      }
-    }
-    if (col != b.getNumCols() - 1) {
-      else if (b[row][col + 1] != NULL) {
-        if (b[row][col + 1].returnType == 1) {
-          openSpots += 1;
-        }
-      }
-    }
-    //Lots of work left to do. I should be searching for NULL spaces as eligible spots so I need to fix that first.
+}
       
   //Just here so I can copy paste
 class Doodlebug : public Critter
