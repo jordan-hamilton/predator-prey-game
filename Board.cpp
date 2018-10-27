@@ -4,7 +4,7 @@
 #include "Doodlebug.hpp"
 #include "Ant.hpp"
 
-using std::rand();
+using std::rand;
 
 /* private member variables of the class
   int numRows;
