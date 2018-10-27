@@ -1,9 +1,9 @@
 /*The doodlebugs behave according to the following model:
-Move: For every time step, the doodlebug will firstly try to move to an adjacent cell 
-containing an ant and eat the ant (you can decide if there are several ants in the adjacent cells, 
-how the doodlebug will choose to move). If there are no ants in adjacent cells, the doodlebug moves 
+Move: For every time step, the doodlebug will firstly try to move to an adjacent cell
+containing an ant and eat the ant (you can decide if there are several ants in the adjacent cells,
+how the doodlebug will choose to move). If there are no ants in adjacent cells, the doodlebug moves
 according to the same rules as the ant.  Note that a doodlebug cannot eat other doodlebugs.
-Breed: If a doodlebug survives for eight time steps, at the end of the time step, it will spawn off 
+Breed: If a doodlebug survives for eight time steps, at the end of the time step, it will spawn off
 a new doodlebug in the same manner as the ant (the Doodlebug will only breed into an empty cell).
 Starve: If a doodlebug has not eaten an ant within three time steps, at the end of the third time
 step it will starve and die. The doodlebug should then be removed from the grid of cells. */
@@ -27,13 +27,13 @@ Doodlebug::Doodlebug() {
 }
 
 //Overloaded contstructor
- Doodlebug::Doodlebug(int r, int c) {
+Doodlebug::Doodlebug(int r, int c) {
    row = r;
    col = c;
    age = 0;
    lastMeal = 0;
    isStarved = false;
- }
+}
 
 //Destructor. Not doing anything special at the moment.
 Doodlebug::~Doodlebug() {}
@@ -46,7 +46,7 @@ void Doodlebug::move(&Board b) {
   int chosenSpot = 0; //random spot chosen out of those open spots (could be 1 to openSpots)
   int eligibleSpot = 0; //counter of eligible spots. Once this = the chosenSpot, I will update row and col values of the bug.
   bool spotFound = false; //sets to true when the eligible spot is chosen. This prevents false matches.
-  
+
   //Check to see if there is an adjacent ant
   if (row != 0) {
     if (b[row - 1][col] != NULL) {
@@ -76,12 +76,12 @@ void Doodlebug::move(&Board b) {
       }
     }
   }
-  
+
   //if there is an adjacent ant, call the eat function and eat it
   if (adjacentAnt == true) {
     this->eat(b);
   }
-  
+
   //otherwise, look for open spots and take one at random
   else {
     //Check to see the number of open spots
@@ -105,12 +105,12 @@ void Doodlebug::move(&Board b) {
 			openSpots += 1;
 		}
 	  }
-	  
+
 	  //if the number of open spots > 0, pick one at random.
 	  if (openSpots > 1) {
 		chosenSpot = rand() % openSpots + 1;
 	  }
-	  
+
 	  //if the chosenSpot is greater than 0, there is a spot to move into, move into it.
 	  if (chosenSpot > 0) {
 		if (row != 0) {
@@ -151,6 +151,35 @@ void Doodlebug::move(&Board b) {
 		}
 	  }
     }
+}
+
+void Doodlebug::eat() {
+
+}
+
+
+void Doodlebug::breed(Board &b) {
+
+}
+
+
+bool Doodlebug::starve() {
+
+}
+
+
+void Doodlebug::incrementLastMeal() {
+  lastMeal += 1;
+}
+
+
+int Doodlebug::getLastMeal() {
+  return lastMeal;
+}
+
+
+void Doodlebug::setLastMeal(int meal) {
+  lastMeal = meal;
 }
 
 /*Just here so I can copy paste
