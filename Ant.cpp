@@ -1,3 +1,5 @@
+#include "Ant.hpp"
+
 Ant::Ant()
 {
     rows = -1;
