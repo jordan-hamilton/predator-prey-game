@@ -5,14 +5,15 @@
 class Ant : public Critter
 {
 private:
-
+  bool isEaten;
+  
 public:
   Ant();
-  Ant(int row, int column);
+  Ant(int, int);
   ~Ant();
   
-  virtual void move(Board &board);
-  virtual void breed(Board &board);
+  virtual void move(Board, int, int);
+  virtual void breed(//add params);
   void printType();
 };
 #endif
