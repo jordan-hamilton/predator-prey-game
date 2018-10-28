@@ -2,8 +2,8 @@
 
 Ant::Ant()
 {
-    rows = -1;
-    columns = -1;
+    row = -1;
+    column = -1;
     age = 0;
     isEaten = false;
 }
