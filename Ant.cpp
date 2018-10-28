@@ -1,3 +1,35 @@
+Ant::Ant()
+{
+    rows = -1;
+    columns = -1;
+    age = 0;
+}
+
+Ant::Ant(int r, int c)
+{
+    row = r;
+    column = c;
+    age = 0;
+}
+
+Ant::~Ant()
+{
+    // Destructor
+}
+
+void Ant::move(Board &board)
+{
+    
+}
+
+void Ant::breed(Board &board)
+{
+    
+}
+void Ant::printType()
+{
+    std::cout << "O" << std::endl;   
+}
 /* The ants behave according to the following model:
 Move: For every time step, the ants randomly move up, down, left, or right. If the neighboring 
 cell in the selected direction is occupied or would move the ant off the grid, then the ant stays 
