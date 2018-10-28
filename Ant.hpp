@@ -7,7 +7,13 @@ class Ant : public Critter
 private:
 
 public:
-
+  Ant();
+  Ant(int row, int column);
+  ~Ant();
+  
+  virtual void move(Board &board);
+  virtual void breed(Board &board);
+  void printType();
 };
 #endif
 
