@@ -14,7 +14,12 @@ public:
   
   virtual void move(Board, int, int);
   virtual void breed(//add params);
-  void printType();
+  
+  //print the type of bug (for use in print board function)
+  virtual void printType();
+  
+  //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
+  virtual void returnType();
 };
 #endif
 
