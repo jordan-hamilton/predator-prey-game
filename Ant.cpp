@@ -86,6 +86,15 @@ void Ant::printType()
 {
     std::cout << "O" << std::endl;   
 }
+    
+//print the type of bug (for use in print board function)
+void Ant::printType() {
+  cout << "ant";
+  
+  //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
+void Ant::returnType() {
+  return 1;
+}
 
 /* The ants behave according to the following model:
 Move: For every time step, the ants randomly move up, down, left, or right. If the neighboring 
