@@ -4,7 +4,7 @@
 Ant::Ant()
 {
     row = -1;
-    column = -1;
+    col = -1;
     age = 0;
     isEaten = false;
 }
@@ -13,7 +13,7 @@ Ant::Ant()
 Ant::Ant(int r, int c)
 {
     row = r;
-    column = c;
+    col = c;
     age = 0;
     isEaten = false;
 }
@@ -29,7 +29,7 @@ Ant::~Ant()
 ** If the neighboring cell in the selected direction is occupied or 
 ** would move the ant off the grid, then the ant stays in the current cell.
 *********************************************************************/
-void Ant::move(Board &board, int row, int column)
+void Ant::move(Board &board, int row, int col)
 {
     // 1 = RIGHT, 2 = LEFT, 3 = UP, 4 = DOWN
     int direction = rand()% 4 + 1;
@@ -37,21 +37,21 @@ void Ant::move(Board &board, int row, int column)
     switch (direction)
     {
         case 1:     // Ant moving right
-            if((column + 1 >= 0) && (column + 1 < 20))
+            if((col + 1 >= 0) && (col + 1 < 20))
             {
-                if (board[row][column + 1]) == NULL
+                if (board[row][col + 1]) == NULL
                 {
-                    column += 1;
+                    col += 1;
                 }
             }
             break;
 
         case 2:     // Ant moving left
-            if((column - 1 >= 0) && (column - 1 < 20))
+            if((col - 1 >= 0) && (col - 1 < 20))
             {
-                if (board[row][column - 1]) == NULL
+                if (board[row][col - 1]) == NULL
                 {
-                    column -= 1;
+                    col -= 1;
                 }
             }
             break;
@@ -59,7 +59,7 @@ void Ant::move(Board &board, int row, int column)
         case 3:     // Ant moving up
             if((row - 1 >= 0) && (row - 1 < 20))
             {
-                if (board[row - 1][column]) == NULL
+                if (board[row - 1][col]) == NULL
                 {
                     row -= 1;
                 }
@@ -69,7 +69,7 @@ void Ant::move(Board &board, int row, int column)
         case 4:     // Ant moving down
             if((row + 1 >= 0) && (row + 1 < 20))
             {
-                if(board[row + 1][column]) == NULL
+                if(board[row + 1][col]) == NULL
                 {
                     row += 1;
                 }
