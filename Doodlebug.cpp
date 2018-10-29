@@ -181,6 +181,14 @@ int Doodlebug::getLastMeal() {
 void Doodlebug::setLastMeal(int meal) {
   lastMeal = meal;
 }
+//print the type of bug (for use in print board function)
+void Doodlebug::printType() {
+  cout << "doodlebug";
+  
+  //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
+void Doodlebug::returnType() {
+  return 0;
+}
 
 /*Just here so I can copy paste
 class Doodlebug : public Critter
