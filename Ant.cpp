@@ -1,5 +1,6 @@
 #include "Ant.hpp"
 
+// Default constructor for Ant(), set variables to default values
 Ant::Ant()
 {
     row = -1;
@@ -8,6 +9,7 @@ Ant::Ant()
     isEaten = false;
 }
 
+// Ant constructor
 Ant::Ant(int r, int c)
 {
     row = r;
@@ -16,11 +18,17 @@ Ant::Ant(int r, int c)
     isEaten = false;
 }
 
+// Ant Destructor
 Ant::~Ant()
 {
     // Destructor
 }
 
+/*********************************************************************
+** Ant::move() moves the ants randomly move up, down, left, or right. 
+** If the neighboring cell in the selected direction is occupied or 
+** would move the ant off the grid, then the ant stays in the current cell.
+*********************************************************************/
 void Ant::move(Board ***board, int row, int column)
 {
     // 1 = RIGHT, 2 = LEFT, 3 = UP, 4 = DOWN
@@ -35,6 +43,11 @@ void Ant::move(Board ***board, int row, int column)
                 row -= 1;
                 column = column;
             }
+            else
+            {
+                row = row;
+                column = column;
+            }
             break;
 
         case 2:     // Ant moving left
@@ -44,6 +57,10 @@ void Ant::move(Board ***board, int row, int column)
                 column -= 1;
                 row = row;
             }
+            else
+            {
+                column = column;
+                row = row;
             break;
 
         case 3:     // Ant moving up
@@ -53,12 +70,22 @@ void Ant::move(Board ***board, int row, int column)
                 row -= 1;
                 column = column;
             }
+            else
+            {
+                row = row;
+                column = column;
             break;
+                
         case 4:     // Ant moving down
             
             if(board[row + 1][column]) == NULL
             {
                 row += 1;
+                column = column;
+            }
+            else
+            {
+                row = row;
                 column = column;
             }
             break;
