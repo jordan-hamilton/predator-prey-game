@@ -29,6 +29,6 @@ public:
   
   void printBoard();
   
-  void getContents(int row, int col);
+  Critter* getContents(int row, int col);
 
 #endif
