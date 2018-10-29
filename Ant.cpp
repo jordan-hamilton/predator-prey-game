@@ -29,7 +29,7 @@ Ant::~Ant()
 ** If the neighboring cell in the selected direction is occupied or 
 ** would move the ant off the grid, then the ant stays in the current cell.
 *********************************************************************/
-void Ant::move(Board ***board, int row, int column)
+void Ant::move(Board &board, int row, int column)
 {
     // 1 = RIGHT, 2 = LEFT, 3 = UP, 4 = DOWN
     int direction = rand()% 4 + 1;
@@ -37,61 +37,46 @@ void Ant::move(Board ***board, int row, int column)
     switch (direction)
     {
         case 1:     // Ant moving right
-            
-            if (board[row][column + 1]) == NULL
+            if((column + 1 >= 0) && (column + 1 < 20))
             {
-                row -= 1;
-                column = column;
-            }
-            else
-            {
-                row = row;
-                column = column;
+                if (board[row][column + 1]) == NULL
+                {
+                    column += 1;
+                }
             }
             break;
 
         case 2:     // Ant moving left
-            
-            if (board[row][column - 1]) == NULL
+            if((column - 1 >= 0) && (column - 1 < 20))
             {
-                column -= 1;
-                row = row;
+                if (board[row][column - 1]) == NULL
+                {
+                    column -= 1;
+                }
             }
-            else
-            {
-                column = column;
-                row = row;
             break;
 
         case 3:     // Ant moving up
-            
-            if (board[row - 1][column]) == NULL
+            if((row - 1 >= 0) && (row - 1 < 20))
             {
-                row -= 1;
-                column = column;
+                if (board[row - 1][column]) == NULL
+                {
+                    row -= 1;
+                }
             }
-            else
-            {
-                row = row;
-                column = column;
             break;
                 
         case 4:     // Ant moving down
-            
-            if(board[row + 1][column]) == NULL
+            if((row + 1 >= 0) && (row + 1 < 20))
             {
-                row += 1;
-                column = column;
-            }
-            else
-            {
-                row = row;
-                column = column;
+                if(board[row + 1][column]) == NULL
+                {
+                    row += 1;
+                }
             }
             break;
     }
 }
-
 
 void Ant::breed(//add params)
 {
