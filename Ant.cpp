@@ -82,10 +82,6 @@ void Ant::breed(//add params)
 {
     
 }
-void Ant::printType()
-{
-    std::cout << "O" << std::endl;   
-}
     
 //print the type of bug (for use in print board function)
 void Ant::printType() {
