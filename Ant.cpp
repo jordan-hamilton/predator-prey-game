@@ -26,10 +26,60 @@ cell in the selected direction is occupied or would move the ant off the grid, t
 in the current cell. */
 
 
-void Ant::move(Board &board, int rows, int columns)
+void Ant::move(Board ***board, int row, int column)
 {
+    // 1 = RIGHT, 2 = LEFT, 3 = UP, 4 = DOWN
     int direction = rand()% 4 + 1;
-    
+
+    // PICK RANDOM DIRECTION
+    // CHECK IF CELL AT DIRECTION IS OCCUPIED OR GOES OFF GRID
+        // IF YES, ANT STAYS IN CURRENT LOCATION
+
+    switch (direction)
+    {
+        case 1:     // Ant moving right
+            if (board[row][column + 1]) == NULL
+            {
+
+            }
+            else
+            {
+
+            }
+            break;
+
+        case 2:     // Ant moving left
+            if (board[row][column - 1]) == NULL
+            {
+
+            }
+            else
+            {
+
+            }
+            break;
+
+        case 3:     // Ant moving up
+            if (board[row - 1][column]) == NULL
+            {
+
+            }
+            else
+            {
+
+            }
+            break;
+        case 4:     // Ant moving down
+            if(board[row + 1][column]) == NULL
+            {
+
+            }
+            else
+            {
+
+            }
+            break;
+    }
 }
 
 void Ant::breed(//add params)
