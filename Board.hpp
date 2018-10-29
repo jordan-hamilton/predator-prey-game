@@ -28,5 +28,7 @@ public:
   void breedAnts();
   
   void printBoard();
+  
+  void getContents(int row, int col);
 
 #endif
