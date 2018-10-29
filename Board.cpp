@@ -42,7 +42,7 @@ Board() {
   }
   
   //place the doodlebugs
-  for (int i = 0; i < numAnts; i++) {
+  for (int i = 0; i < numDoodlebugs; i++) {
     this->placeBug(0); //0 indicates doodlebug
   }
 }
@@ -73,7 +73,7 @@ Board(int row, int col, int ant, int doodlebug) {
   }
   
   //place the doodlebugs
-  for (int i = 0; i < numAnts; i++) {
+  for (int i = 0; i < numDoodlebugs; i++) {
     this->placeBug(0);
   }
 }
