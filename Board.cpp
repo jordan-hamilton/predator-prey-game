@@ -138,3 +138,8 @@ void placeBug(int species) {
           cout << " ";
         }
         else if (bugBoard[i][j] == )
+          //this isn't done obviously
+          
+Critter* Board::getContents(int row, int col) {
+  return bugBoard[row][col];
+}
