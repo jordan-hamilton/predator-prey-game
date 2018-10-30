@@ -2,6 +2,8 @@
 #include "Board.hpp"
 #include "Doodlebug.hpp"
 
+using std::cout;
+using std::endl;
 using std::rand;
 
 /* private member variables of the class
