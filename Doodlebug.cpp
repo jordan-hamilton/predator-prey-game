@@ -69,7 +69,6 @@ void Doodlebug::move(&Board b) {
       }
     }
   }
-  if (col != b.getNumCols() - 1) {
     if (b[row][col + 1] != NULL) {
       if (b[row][col + 1].returnType == 1) {
         adjacentAnt = true;
