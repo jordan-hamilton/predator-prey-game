@@ -193,3 +193,11 @@ void Board::printBoard() {
 Critter* Board::getContents(int row, int col) {
   return bugBoard[row][col];
 }
+
+int Board::getNumCols() {
+  return numCols;
+}
+
+int Board::getNumRows() {
+  return numRows;
+}
