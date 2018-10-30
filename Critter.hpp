@@ -5,6 +5,8 @@
 
 #include "Board.hpp"
 
+class Board;
+
 class Critter
 {
 protected:
