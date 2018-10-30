@@ -26,8 +26,8 @@ Ant::~Ant()
 }
 
 /*********************************************************************
-** Ant::move() moves the ants randomly move up, down, left, or right. 
-** If the neighboring cell in the selected direction is occupied or 
+** Ant::move() moves the ants randomly move up, down, left, or right.
+** If the neighboring cell in the selected direction is occupied or
 ** would move the ant off the grid, then the ant stays in the current cell.
 *********************************************************************/
 void Ant::move(Board &board, int row, int col)
@@ -40,7 +40,7 @@ void Ant::move(Board &board, int row, int col)
         case 1:     // Ant moving right
             if((col + 1 >= 0) && (col + 1 < 20))
             {
-                if (board[row][col + 1]) == NULL
+                if (board.getContents(row, col + 1) == NULL)
                 {
                     col += 1;
                 }
@@ -50,7 +50,7 @@ void Ant::move(Board &board, int row, int col)
         case 2:     // Ant moving left
             if((col - 1 >= 0) && (col - 1 < 20))
             {
-                if (board[row][col - 1]) == NULL
+                if (board.getContents(row, col - 1) == NULL)
                 {
                     col -= 1;
                 }
@@ -60,17 +60,17 @@ void Ant::move(Board &board, int row, int col)
         case 3:     // Ant moving up
             if((row - 1 >= 0) && (row - 1 < 20))
             {
-                if (board[row - 1][col]) == NULL
+                if (board.getContents(row - 1, col) == NULL)
                 {
                     row -= 1;
                 }
             }
             break;
-                
+
         case 4:     // Ant moving down
             if((row + 1 >= 0) && (row + 1 < 20))
             {
-                if(board[row + 1][col]) == NULL
+                if(board.getContents(row + 1, col) == NULL)
                 {
                     row += 1;
                 }
@@ -81,7 +81,7 @@ void Ant::move(Board &board, int row, int col)
 
 void Ant::breed(//add params)
 {
-    
+
 }
 
 //print the type of bug (for use in print board function)
