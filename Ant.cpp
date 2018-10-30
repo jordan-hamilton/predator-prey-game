@@ -89,7 +89,7 @@ void Ant::printType() {
   cout << "ant";
   
   //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
-void Ant::returnType() {
+int Ant::returnType() {
   return 1;
 }
 
