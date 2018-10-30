@@ -100,10 +100,10 @@ void Board::placeBug(int species) {
           eligibleSpaces += 1;
           if (eligibleSpaces == bugSpace) {
             if (species == 0) {
-              bugBoard[i][j] == new Doodlebug(i, j);
+              bugBoard[i][j] = new Doodlebug(i, j);
             }
             else if (species == 1) {
-              bugBoard[i][j] == new Ant(i, j);
+              bugBoard[i][j] = new Ant(i, j);
             }
             else {
               cout << "Invalid species call to placeBug. Expected '0' or '1'. Got" << species << ".\n";
