@@ -13,10 +13,10 @@ public:
   Doodlebug();
   Doodlebug(int r, int c); // ints - row and column location of Doodlebug
   ~Doodlebug();
-  virtual void move(//add params);
-  virtual void eat(//add params);
-  virtual void breed(//add params);
-  void starve();
+  void move(Board &board, int row, int col) override;
+  void eat();
+  void breed(Board &board) override;
+  //TODO bool starve() override;
   void incrementLastMeal();   // lastMeal++
   int getLastMeal();
   void setLastMeal(int);
