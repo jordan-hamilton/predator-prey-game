@@ -1,8 +1,6 @@
-#ifndef BOARD_HPP
-#define BOARD_HPP
-#include "Critter.hpp"
-#include "Doodlebug.hpp"
 #include "Ant.hpp"
+#include "Board.hpp"
+#include "Doodlebug.hpp"
 
 using std::rand;
 
@@ -26,19 +24,19 @@ Board::Board() {
   for (int i = 0; i < numRows; i++) {
     bugBoard[i] = new Critter*[numCols];
   }
-  
+
   //Set the pointers to null
   for (int i = 0; i < numRows; i++) {
       for (int j = 0; j < numCols; j++) {
         bugBoard[i][j] = NULL;
       }
   }
-  
+
   //place the ants
   for (int i = 0; i < numAnts; i++) {
     this->placeBug(1); //1 indicates ant
   }
-  
+
   //place the doodlebugs
   for (int i = 0; i < numDoodlebugs; i++) {
     this->placeBug(0); //0 indicates doodlebug
@@ -57,19 +55,19 @@ Board::Board(int row, int col, int ant, int doodlebug) {
   for (int i = 0; i < numRows; i++) {
     bugBoard[i] = new Critter*[numCols];
   }
-  
+
   //Set the pointers to null
   for (int i = 0; i < numRows; i++) {
       for (int j = 0; j < numCols; j++) {
         bugBoard[i][j] = NULL;
       }
   }
-  
+
   //place the ants
   for (int i = 0; i < numAnts; i++) {
     this->placeBug(1);
   }
-  
+
   //place the doodlebugs
   for (int i = 0; i < numDoodlebugs; i++) {
     this->placeBug(0);
@@ -80,7 +78,7 @@ Board::Board(int row, int col, int ant, int doodlebug) {
 void Board::placeBug(int species) {
   int eligibleSpaces = 0;
   int bugSpace;
-  
+
   //Determine how many eligible spaces are left on board
   for (int i = 0; i < numRows; i++)
       for (int j = 0; j < numCols; j++) {
@@ -88,13 +86,13 @@ void Board::placeBug(int species) {
           eligibleSpaces += 1;
       }
   }
-  
+
   //Determine which eligible space to place doodlebug
   bugSpace = rand() % eligibleSpaces + 1;
-  
+
   //reset eligibleSpace counter
   eligibleSpaces = 0;
-  
+
   //Find eligible space, create doodlebug
   for (int i = 0; i < numRows; i++) {
       for (int j = 0; j < numCols; j++) {
@@ -119,27 +117,27 @@ void Board::placeBug(int species) {
 void Board::moveDoodlebugs() {
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-      if (bugBoard[i][j]->returnType == 0) {
+      if (bugBoard[i][j]->returnType() == 0) {
         //call move function here
       }
     }
   }
 }
-  
+
 void Board::breedDoodlebugs() {
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-      if (bugBoard[i][j]->returnType == 0) {
+      if (bugBoard[i][j]->returnType() == 0) {
         //call breed function here
       }
     }
   }
 }
-  
+
 void Board::moveAnts() {
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-      if (bugBoard[i][j]->returnType == 1) {
+      if (bugBoard[i][j]->returnType() == 1) {
         //call move function here
       }
     }
@@ -149,42 +147,42 @@ void Board::moveAnts() {
 void Board::breedAnts() {
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-      if (bugBoard[i][j]->returnType == 1) {
+      if (bugBoard[i][j]->returnType() == 1) {
         //call breed function here
       }
     }
   }
 }
-  
+
 void Board::printBoard() {
     //print top border
     for (int i = 0; i < numRows + 2; i++) {
       cout << "-";
     }
-    
+
     cout << endl;
-    
+
     for (int i = 0; i < numRows; i++) {
-      
+
       //print side border
       cout << "|";
-      
+
       //loop through columns
       for (int j = 0; j < numCols; j++) {
         if (bugBoard[i][j] == NULL) {
           cout << " ";
         }
-        else if (bugBoard[i][j]->returnType == 0) {
+        else if (bugBoard[i][j]->returnType() == 0) {
           cout << "X";
         }
-        else if (bugBoard[i][j]->returnType == 1) {
+        else if (bugBoard[i][j]->returnType() == 1) {
           cout << "O";
         }
         else {
-          cout << "Z" //debug character
+          cout << "Z"; //debug character
         }
       }
-      
+
       //print side border, move to new line
       cout << "|" << endl;
     }
