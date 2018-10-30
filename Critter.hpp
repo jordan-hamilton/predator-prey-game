@@ -10,8 +10,11 @@ protected:
   int col;
   int row;
   int age;
-  
+
 public:
+
+  virtual ~Critter() {};
+
   //move critter according to rules
   virtual void move(&Board b) = 0;
   
