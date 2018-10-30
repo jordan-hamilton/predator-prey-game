@@ -86,8 +86,9 @@ void Ant::breed(//add params)
 
 //print the type of bug (for use in print board function)
 void Ant::printType() {
-  cout << "ant";
-  
+  std::cout << "ant";
+}
+
   //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
 int Ant::returnType() {
   return 1;
