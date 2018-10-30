@@ -2,6 +2,7 @@
 #define CRITTER_HPP
 
 #include <iostream>
+
 #include "Board.hpp"
 
 class Critter
@@ -26,13 +27,13 @@ public:
   
   //print the type of bug (for use in print board function)
   virtual void printType() = 0;
-  
+
   //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
-  virtual void returnType() = 0;
-  
+  virtual int returnType() = 0;
+
   //adds 1 to the age
   void incrementAge();
-  
+
   //sets the age = to int a
   void setAge(int a);
 };
