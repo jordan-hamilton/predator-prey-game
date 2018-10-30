@@ -25,7 +25,7 @@ public:
   virtual void printType();
   
   //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
-  virtual void returnType();
+  int returnType() override;
 };
 #endif
 
