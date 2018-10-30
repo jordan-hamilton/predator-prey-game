@@ -79,7 +79,7 @@ void Ant::move(Board &board, int row, int col)
     }
 }
 
-void Ant::breed(//add params)
+void Ant::breed(Board &b)
 {
 
 }
