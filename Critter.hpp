@@ -23,8 +23,8 @@ public:
   virtual void breed(&Board b) = 0;
   
   //return true if creature has starved (only doodlebug function)
-  virtual bool starve() = 0;
-  
+  //TODO virtual bool starve();
+
   //print the type of bug (for use in print board function)
   virtual void printType() = 0;
 
@@ -39,6 +39,6 @@ public:
 };
 #endif
 
-/*Create a class named Critter that contains data and functions common to ants and doodlebugs. 
-This class should have a virtual function named move that is defined in the derived classes of 
+/*Create a class named Critter that contains data and functions common to ants and doodlebugs.
+This class should have a virtual function named move that is defined in the derived classes of
 Ant and Doodlebug.  Each class will be in its own source file. */
