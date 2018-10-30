@@ -10,7 +10,7 @@ step it will starve and die. The doodlebug should then be removed from the grid 
 
 #include <cstdlib>
 #include <iostream>
-#include "Critter.hpp"
+
 #include "Doodlebug.hpp"
 
 using std::cout;
@@ -40,7 +40,7 @@ Doodlebug::~Doodlebug() {}
 
 //takes the board, calls the eat function if an ant exists, otherwise changes row and col location of the doodlebug.
 //Board function should call row and col to copy bug (ex. Board[Board[old location]->getRow][Board[old location]->getCol] = Board[old location]
-void Doodlebug::move(&Board b) {
+void Doodlebug::move(Board &board, int row, int col) {
   bool adjacentAnt = false;
   int openSpots = 0; //number of open spots around bug
   int chosenSpot = 0; //random spot chosen out of those open spots (could be 1 to openSpots)
@@ -49,28 +49,29 @@ void Doodlebug::move(&Board b) {
 
   //Check to see if there is an adjacent ant
   if (row != 0) {
-    if (b[row - 1][col] != NULL) {
-      if (b[row - 1][col].returnType == 1) {
+    if (board.getContents(row - 1, col) != NULL) {
+      if (board.getContents(row - 1, col)->returnType() == 1) {
         adjacentAnt = true;
       }
     }
   }
-  if (row != (b.getNumRows() - 1) { // -1 because board is 0 to numRows - 1
-    if (b[row + 1][col] != NULL) {
-      if (b[row + 1][col].returnType == 1) {
+  if (row != (board.getNumRows() - 1)) { // -1 because board is 0 to numRows - 1
+    if (board.getContents(row + 1, col) != NULL) {
+      if ( board.getContents(row + 1, col)->returnType() == 1 ) {
         adjacentAnt = true;
       }
     }
   }
   if (col != 0) {
-    if (b[row][col - 1] != NULL) {
-      if (b[row][col - 1].returnType == 1) {
+    if ( board.getContents(row, col - 1) != NULL ) {
+      if ( board.getContents(row, col - 1)->returnType() == 1 ) {
         adjacentAnt = true;
       }
     }
   }
-    if (b[row][col + 1] != NULL) {
-      if (b[row][col + 1].returnType == 1) {
+  if (col != board.getNumCols() - 1) {
+    if ( board.getContents(row, col + 1) != NULL ) {
+      if ( board.getContents(row, col + 1)->returnType() == 1 ) {
         adjacentAnt = true;
       }
     }
@@ -78,29 +79,29 @@ void Doodlebug::move(&Board b) {
 
   //if there is an adjacent ant, call the eat function and eat it
   if (adjacentAnt == true) {
-    this->eat(b);
+    this->eat();
   }
 
   //otherwise, look for open spots and take one at random
   else {
     //Check to see the number of open spots
 	  if (row != 0) {
-		if (b[row - 1][col] == NULL) {
+		if ( board.getContents(row - 1, col) == NULL ) {
 		  openSpots += 1;
 		}
 	  }
-	  if (row != (b.getNumRows() - 1) { // -1 because board is 0 to numRows - 1
-		if (b[row + 1][col] == NULL) {
+	  if ( row != (board.getNumRows() - 1) ) { // -1 because board is 0 to numRows - 1
+		if ( board.getContents(row + 1, col) == NULL ) {
 		  openSpots += 1;
 		}
 	  }
 	  if (col != 0) {
-		if (b[row][col - 1] == NULL) {
+		if ( board.getContents(row, col - 1) == NULL ) {
 			openSpots += 1;
 		}
 	  }
-	  if (col != b.getNumCols() - 1) {
-		if (b[row][col + 1] == NULL) {
+	  if (col != board.getNumCols() - 1) {
+		if ( board.getContents(row, col + 1) == NULL ) {
 			openSpots += 1;
 		}
 	  }
@@ -113,7 +114,7 @@ void Doodlebug::move(&Board b) {
 	  //if the chosenSpot is greater than 0, there is a spot to move into, move into it.
 	  if (chosenSpot > 0) {
 		if (row != 0) {
-		   if (b[row - 1][col] == NULL) {
+		   if ( board.getContents(row - 1, col) == NULL ) {
 			  eligibleSpot += 1;
 			  if (eligibleSpot == chosenSpot) {
 				row = row - 1;
@@ -121,8 +122,8 @@ void Doodlebug::move(&Board b) {
 			  }
 		   }
 		}
-		if (row != (b.getNumRows() - 1) { // -1 because board is 0 to numRows - 1
-		  if (b[row + 1][col] == NULL) {
+		if ( row != (board.getNumRows() - 1) ) { // -1 because board is 0 to numRows - 1
+		  if ( board.getContents(row + 1, col) == NULL ) {
 			eligibleSpot += 1;
 			  if (eligibleSpot == chosenSpot) {
 				row = row + 1;
@@ -131,7 +132,7 @@ void Doodlebug::move(&Board b) {
 		  }
 		}
 		if (col != 0) {
-		  if (b[row][col - 1] == NULL) {
+		  if ( board.getContents(row, col - 1) == NULL ) {
 			  eligibleSpot += 1;
 			  if (eligibleSpot == chosenSpot) {
 				row = row;
@@ -139,8 +140,8 @@ void Doodlebug::move(&Board b) {
 			  }
 		  }
 		}
-		if (col != b.getNumCols() - 1) {
-		  if (b[row][col + 1] == NULL) {
+		if (col != board.getNumCols() - 1) {
+		  if ( board.getContents(row, col + 1) == NULL ) {
 			  eligibleSpot += 1;
 			  if (eligibleSpot == chosenSpot) {
 				row = row;
@@ -153,18 +154,19 @@ void Doodlebug::move(&Board b) {
 }
 
 void Doodlebug::eat() {
-
+  //TODO
 }
 
 
 void Doodlebug::breed(Board &b) {
-
+  //TODO
 }
 
 
-bool Doodlebug::starve() {
-
-}
+/*bool Doodlebug::starve() {
+  return false;
+  //TODO
+}*/
 
 
 void Doodlebug::incrementLastMeal() {
@@ -183,9 +185,10 @@ void Doodlebug::setLastMeal(int meal) {
 //print the type of bug (for use in print board function)
 void Doodlebug::printType() {
   cout << "doodlebug";
-  
+}
+
   //return a 0 for doodlebug and 1 for ant (for use in movement and eating functions? We may just get rid of this one)
-void Doodlebug::returnType() {
+int Doodlebug::returnType() {
   return 0;
 }
 
