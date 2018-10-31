@@ -14,9 +14,9 @@ public:
   Doodlebug();
   Doodlebug(int r, int c); // ints - row and column location of Doodlebug
   ~Doodlebug();
-  void move(Board &board, int row, int col) override;
+  void move(Critter*** board, int row, int col) override;
   void eat();
-  void breed(Board &board) override;
+  void breed(Critter*** board) override;
   //TODO bool starve() override;
   void incrementLastMeal();   // lastMeal++
   int getLastMeal();
