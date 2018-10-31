@@ -42,10 +42,8 @@ Doodlebug::~Doodlebug() {}
 //Board function should call row and col to copy bug (ex. Board[Board[old location]->getRow][Board[old location]->getCol] = Board[old location]
 void Doodlebug::move(Critter*** board, int row, int col) {
   bool adjacentAnt = false;
-  int openSpots = 0; //number of open spots around bug
-  int chosenSpot = 0; //random spot chosen out of those open spots (could be 1 to openSpots)
-  int eligibleSpot = 0; //counter of eligible spots. Once this = the chosenSpot, I will update row and col values of the bug.
-  bool spotFound = false; //sets to true when the eligible spot is chosen. This prevents false matches.
+  int direction;
+  bool validMove = true;
 	
   //set hasMoved to true (it will be reset in breed)
   hasMoved = true;
@@ -90,73 +88,66 @@ void Doodlebug::move(Critter*** board, int row, int col) {
     //increment last meal
     lastMeal += 1;
 	  
-    //Check to see the number of open spots
-	  if (row != 0) {
-		if ( board[row - 1][col] == NULL ) {
-		  openSpots += 1;
-		}
-	  }
-	  if ( row != (board.getNumRows() - 1) ) { // -1 because board is 0 to numRows - 1
-		if ( board[row + 1][col] == NULL ) {
-		  openSpots += 1;
-		}
-	  }
-	  if (col != 0) {
-		if ( board[row][col - 1] == NULL ) {
-			openSpots += 1;
-		}
-	  }
-	  if (col != board.getNumCols() - 1) {
-		if ( board[row][col + 1] == NULL ) {
-			openSpots += 1;
-		}
-	  }
-
-	  //if the number of open spots > 0, pick one at random.
-	  if (openSpots > 1) {
-		chosenSpot = rand() % openSpots + 1;
-	  }
-
-	  //if the chosenSpot is greater than 0, there is a spot to move into, move into it.
-	  if (chosenSpot > 0) {
-		if (row != 0) {
-		   if ( board[row - 1][col] == NULL ) {
-			  eligibleSpot += 1;
-			  if (eligibleSpot == chosenSpot) {
-				row = row - 1;
-				col = col;
-			  }
-		   }
-		}
-		if ( row != (board.getNumRows() - 1) ) { // -1 because board is 0 to numRows - 1
-		  if ( board[row + 1][col] == NULL ) {
-			eligibleSpot += 1;
-			  if (eligibleSpot == chosenSpot) {
-				row = row + 1;
-				col = col;
-			  }
-		  }
-		}
-		if (col != 0) {
-		  if ( board[row][col - 1] == NULL ) {
-			  eligibleSpot += 1;
-			  if (eligibleSpot == chosenSpot) {
-				row = row;
-				col = col - 1;
-			  }
-		  }
-		}
-		if (col != board.getNumCols() - 1) {
-		  if ( board[row][col + 1] == NULL ) {
-			  eligibleSpot += 1;
-			  if (eligibleSpot == chosenSpot) {
-				row = row;
-				col = col + 1;
-			  }
-		  }
-		}
-	  }
+    //Pick a direction at random, move if it is valid
+    direction = rand() % 4 + 1; //1 for north, 2 for east, 3 for south, 4 for west
+    
+    //top row condition
+    if (row == 0 && direction == 1) {
+    validMove = false;
     }
+    //left edge condition
+    else if (col == 0 && direction == 4) {
+    validMove = false;  
+    }
+    //bottom row condition
+    else if ( row == getNumRows() - 1 && direction == 3) {
+    validMove = false;  
+    }
+    //left edge condition
+    else if (col == getNumCols() - 1 && direction == 2) {
+    validMove = false;  
+    }
+    //if not an edge case, check for contents already
+    else if (direction == 1) {
+      if (board[row - 1][col] != NULL) {
+        validMove = false;
+      }
+    }
+    else if (direction == 2) {
+      if (board[row][col + 1] != NULL) {
+        validMove = false;
+      }
+    }
+    else if (direction == 3) {
+      if (board[row + 1][col] != NULL) {
+        validMove = false;
+      }
+    }
+    else if (direction == 4) {
+      if (board[row][col + 1] != NULL) {
+        validMove = false;
+      }
+    }
+	 
+    if (validMove == true) {
+      if (direction == 1) {
+        row = row - 1;
+	col = col;
+      }
+      else if (direction == 2) {
+        row = row;
+	col = col + 1;
+      }
+      else if (direction == 3) {
+        row = row - 1;
+	col = col;
+      }
+      else if (direction == 4) {
+        row = row;
+	col = col - 1;
+      }
+    }
+  }
 }
 
 void Doodlebug::eat(Critter*** board) {
