@@ -40,7 +40,7 @@ Doodlebug::~Doodlebug() {}
 
 //takes the board, calls the eat function if an ant exists, otherwise changes row and col location of the doodlebug.
 //Board function should call row and col to copy bug (ex. Board[Board[old location]->getRow][Board[old location]->getCol] = Board[old location]
-void Doodlebug::move(Board &board, int row, int col) {
+void Doodlebug::move(Critter*** board, int row, int col) {
   bool adjacentAnt = false;
   int openSpots = 0; //number of open spots around bug
   int chosenSpot = 0; //random spot chosen out of those open spots (could be 1 to openSpots)
@@ -49,29 +49,29 @@ void Doodlebug::move(Board &board, int row, int col) {
 
   //Check to see if there is an adjacent ant
   if (row != 0) {
-    if (board.getContents(row - 1, col) != NULL) {
-      if (board.getContents(row - 1, col)->returnType() == 1) {
+    if (board[row - 1][col] != NULL) {
+      if (board[row - 1][col]->returnType() == 1) {
         adjacentAnt = true;
       }
     }
   }
   if (row != (board.getNumRows() - 1)) { // -1 because board is 0 to numRows - 1
-    if (board.getContents(row + 1, col) != NULL) {
-      if ( board.getContents(row + 1, col)->returnType() == 1 ) {
+    if (board[row + 1][col] != NULL) {
+      if ( board[row + 1][col]->returnType() == 1 ) {
         adjacentAnt = true;
       }
     }
   }
   if (col != 0) {
-    if ( board.getContents(row, col - 1) != NULL ) {
-      if ( board.getContents(row, col - 1)->returnType() == 1 ) {
+    if ( board[row][col - 1] != NULL ) {
+      if ( board[row][col - 1]->returnType() == 1 ) {
         adjacentAnt = true;
       }
     }
   }
   if (col != board.getNumCols() - 1) {
-    if ( board.getContents(row, col + 1) != NULL ) {
-      if ( board.getContents(row, col + 1)->returnType() == 1 ) {
+    if ( board[row][col + 1] != NULL ) {
+      if ( board[row][col + 1]->returnType() == 1 ) {
         adjacentAnt = true;
       }
     }
@@ -86,22 +86,22 @@ void Doodlebug::move(Board &board, int row, int col) {
   else {
     //Check to see the number of open spots
 	  if (row != 0) {
-		if ( board.getContents(row - 1, col) == NULL ) {
+		if ( board[row - 1][col] == NULL ) {
 		  openSpots += 1;
 		}
 	  }
 	  if ( row != (board.getNumRows() - 1) ) { // -1 because board is 0 to numRows - 1
-		if ( board.getContents(row + 1, col) == NULL ) {
+		if ( board[row + 1][col] == NULL ) {
 		  openSpots += 1;
 		}
 	  }
 	  if (col != 0) {
-		if ( board.getContents(row, col - 1) == NULL ) {
+		if ( board[row][col - 1] == NULL ) {
 			openSpots += 1;
 		}
 	  }
 	  if (col != board.getNumCols() - 1) {
-		if ( board.getContents(row, col + 1) == NULL ) {
+		if ( board[row][col + 1] == NULL ) {
 			openSpots += 1;
 		}
 	  }
@@ -114,7 +114,7 @@ void Doodlebug::move(Board &board, int row, int col) {
 	  //if the chosenSpot is greater than 0, there is a spot to move into, move into it.
 	  if (chosenSpot > 0) {
 		if (row != 0) {
-		   if ( board.getContents(row - 1, col) == NULL ) {
+		   if ( board[row - 1][col] == NULL ) {
 			  eligibleSpot += 1;
 			  if (eligibleSpot == chosenSpot) {
 				row = row - 1;
@@ -123,7 +123,7 @@ void Doodlebug::move(Board &board, int row, int col) {
 		   }
 		}
 		if ( row != (board.getNumRows() - 1) ) { // -1 because board is 0 to numRows - 1
-		  if ( board.getContents(row + 1, col) == NULL ) {
+		  if ( board[row + 1][col] == NULL ) {
 			eligibleSpot += 1;
 			  if (eligibleSpot == chosenSpot) {
 				row = row + 1;
@@ -132,7 +132,7 @@ void Doodlebug::move(Board &board, int row, int col) {
 		  }
 		}
 		if (col != 0) {
-		  if ( board.getContents(row, col - 1) == NULL ) {
+		  if ( board[row][col - 1] == NULL ) {
 			  eligibleSpot += 1;
 			  if (eligibleSpot == chosenSpot) {
 				row = row;
@@ -141,7 +141,7 @@ void Doodlebug::move(Board &board, int row, int col) {
 		  }
 		}
 		if (col != board.getNumCols() - 1) {
-		  if ( board.getContents(row, col + 1) == NULL ) {
+		  if ( board[row][col + 1] == NULL ) {
 			  eligibleSpot += 1;
 			  if (eligibleSpot == chosenSpot) {
 				row = row;
