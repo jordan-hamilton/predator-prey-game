@@ -82,11 +82,14 @@ void Doodlebug::move(Critter*** board, int row, int col) {
 
   //if there is an adjacent ant, call the eat function and eat it
   if (adjacentAnt == true) {
-    this->eat();
+    this->eat(board);
   }
 
-  //otherwise, look for open spots and take one at random
+  //otherwise, look for open spots and take one at random, add 1 to lastMeal
   else {
+    //increment last meal
+    lastMeal += 1;
+	  
     //Check to see the number of open spots
 	  if (row != 0) {
 		if ( board[row - 1][col] == NULL ) {
@@ -156,8 +159,91 @@ void Doodlebug::move(Critter*** board, int row, int col) {
     }
 }
 
-void Doodlebug::eat() {
-  //TODO
+void Doodlebug::eat(Critter*** board) {
+  int eligibleSpots = 0;
+  int chosenSpot;
+  
+  //Check to see where adjacent ants are, add to eligible spots
+  if (row != 0) {
+    if (board[row - 1][col] != NULL) {
+      if (board[row - 1][col]->returnType() == 1) {
+        eligibleSpots += 1;
+      }
+    }
+  }
+  if (row != (board.getNumRows() - 1)) { // -1 because board is 0 to numRows - 1
+    if (board[row + 1][col] != NULL) {
+      if ( board[row + 1][col]->returnType() == 1 ) {
+        eligibleSpots += 1;
+      }
+    }
+  }
+  if (col != 0) {
+    if ( board[row][col - 1] != NULL ) {
+      if ( board[row][col - 1]->returnType() == 1 ) {
+        eligibleSpots += 1;
+      }
+    }
+  }
+  if (col != board.getNumCols() - 1) {
+    if ( board[row][col + 1] != NULL ) {
+      if ( board[row][col + 1]->returnType() == 1 ) {
+        eligibleSpots += 1;
+      }
+    }
+  }
+
+  chosenSpot = rand() % eligibleSpots + 1;
+  
+  //Find chosen spot, move row and col to it, (the ant will be deleted and this will be moved in board function), reset lastMeal
+  if (row != 0) {
+    if (board[row - 1][col] != NULL) {
+      if (board[row - 1][col]->returnType() == 1) {
+        eligibleSpots += 1;
+        if (eligibleSpot == chosenSpot) {
+	  row = row - 1;
+	  col = col;
+	  lastMeal = 0;
+	}
+      }
+    }
+  }
+  if (row != (board.getNumRows() - 1)) { // -1 because board is 0 to numRows - 1
+    if (board[row + 1][col] != NULL) {
+      if ( board[row + 1][col]->returnType() == 1 ) {
+        eligibleSpots += 1;
+	if (eligibleSpot == chosenSpot) {
+	  row = row + 1;
+	  col = col;
+	  lastMeal = 0;
+	}
+      }
+    }
+  }
+  if (col != 0) {
+    if ( board[row][col - 1] != NULL ) {
+      if ( board[row][col - 1]->returnType() == 1 ) {
+        eligibleSpots += 1;
+	if (eligibleSpot == chosenSpot) {
+	  row = row;
+	  col = col - 1;
+	  lastMeal = 0;
+	}
+      }
+    }
+  }
+  if (col != board.getNumCols() - 1) {
+    if ( board[row][col + 1] != NULL ) {
+      if ( board[row][col + 1]->returnType() == 1 ) {
+        eligibleSpots += 1;
+	if (eligibleSpot == chosenSpot) {
+	  row = row;
+	  col = col + 1;
+	  lastMeal = 0;
+	}
+      }
+    }
+  }
 }
 
 
@@ -172,7 +258,7 @@ void Doodlebug::breed(Critter*** board) {
 }*/
 
 
-void Doodlebug::incrementLastMeal() {
+void Doodlebug::incrementLastMeal() { //probably don't need this anymore, built it into move instead
   lastMeal += 1;
 }
 
