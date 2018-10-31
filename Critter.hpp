@@ -19,10 +19,10 @@ public:
   virtual ~Critter() {};
 
   //move critter according to rules
-  virtual void move(Board &board, int row, int col) = 0;
+  virtual void move(Critter*** board, int row, int col) = 0;
 
   //breed critter according to rules
-  virtual void breed(Board &b) = 0;
+  virtual void breed(Critter*** board) = 0;
 
   //return true if creature has starved (only doodlebug function)
   //TODO virtual bool starve();
