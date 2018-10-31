@@ -13,6 +13,7 @@ protected:
   int col;
   int row;
   int age;
+  bool hasMoved;
 
 public:
 
@@ -38,6 +39,9 @@ public:
 
   //sets the age = to int a
   void setAge(int a);
+  
+  //sets hasMoved to false if 0 is input, true if 1 is input
+  void setHasMoved(int i);
 };
 #endif
 
