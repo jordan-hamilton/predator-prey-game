@@ -46,6 +46,9 @@ void Doodlebug::move(Critter*** board, int row, int col) {
   int chosenSpot = 0; //random spot chosen out of those open spots (could be 1 to openSpots)
   int eligibleSpot = 0; //counter of eligible spots. Once this = the chosenSpot, I will update row and col values of the bug.
   bool spotFound = false; //sets to true when the eligible spot is chosen. This prevents false matches.
+	
+  //set hasMoved to true (it will be reset in breed)
+  hasMoved = true;
 
   //Check to see if there is an adjacent ant
   if (row != 0) {
@@ -158,7 +161,7 @@ void Doodlebug::eat() {
 }
 
 
-void Doodlebug::breed(Board &b) {
+void Doodlebug::breed(Critter*** board) {
   //TODO
 }
 
