@@ -109,13 +109,18 @@ randomly attempt to pick another one.  If there is no empty cell available, no b
 Once an offspring is produced, an ant cannot produce an offspring again until it has
 survived three more time steps. */
 
-
 /*
  * breed is intended to be run at the end of every turn. If both a pending breeding exists and an adjacent square exists,
  * it will randomly select a direction to spawn a new ant in. breedingPending is then set to false.
  *
  * If either case is false,the function simply returns without modifying anything and the ant will have an opportunity
  * to breed on it's next turn.
+ *
+ * Within the while loop, the tempDirection and hasCompleted variables are local. tempDirection is randomly generated,
+ * then modulo'd to get a result between 1 and 4. Once it has a result, it will apply the actions to the space that is selected.
+ * If the space ends up not being empty, it'll go to the end of the loop, a new number will be randomly selected, and that will be
+ * applied instead. This will be repeated until a space is spawned with a new ant. This will not run into a problem of having four non
+ * free spaces since the doesAdjacentExist() function must return true for that part of the loop to execute.
  */
 void Ant::breed(Board &b)
 {
