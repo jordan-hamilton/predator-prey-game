@@ -88,6 +88,10 @@ void Doodlebug::move(Critter*** board, int row, int col) {
     //increment last meal
     lastMeal += 1;
 	  
+    if (lastMeal >= 3) {
+      isStarved = true;
+    }
+	  
     //Pick a direction at random, move if it is valid
     direction = rand() % 4 + 1; //1 for north, 2 for east, 3 for south, 4 for west
     
