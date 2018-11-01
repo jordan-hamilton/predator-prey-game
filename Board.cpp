@@ -115,12 +115,42 @@ void Board::placeBug(int species) {
      }
   }
 }
-  //need some sort of a returnSpecies function to ID doodlebugs/ants before we can add these...
+
+//passes board to doodlebug object, changes row and col of object, copies object data
+//to new row and col, deletes old data.
 void Board::moveDoodlebugs() {
+  int tempRow;
+  int tempCol;
+  
+  //loop through the board
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-      if (bugBoard[i][j]->returnType() == 0) {
-        //call move function here
+     
+      //check if we're looking at a doodlebug
+      if (bugBoard[i][j] != NULL) {
+        if (bugBoard[i][j]->returnType() == 0) {
+
+          //call move function for doodlebug
+          bugBoard[i][j]->move(bugBoard, numRows, numCols);
+
+          //set temp row and col to new doodlebug location
+          tempRow = bugBoard[i][j]->getRow;
+          tempCol = bugBoard[i][j]->getCol;
+
+          //if the doodlebug is eating an ant, delete the ant
+          if (bugBoard[tempRow][tempCol] != NULL) {
+            if (bugBoard[tempRow][tempCol]->returnType() == 1) {
+              delete bugBoard[tempRow][tempCol];
+            }
+          }
+
+          //copy over doodlebug
+          bugBoard[tempRow][tempCol] = bugBoard[i][j];
+
+          //delete old doodlebug
+          delete bugBoard[i][j];
+          bugBoard[i][j] = NULL;
+        }
       }
     }
   }
@@ -129,8 +159,8 @@ void Board::moveDoodlebugs() {
 void Board::breedDoodlebugs() {
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-      if (bugBoard[i][j]->returnType() == 0) {
-        //call breed function here
+      if (bugBoard[i][j]->returnType() == 0 && bugBoard[i][j]->getHasMoved() == false) {
+        bugBoard[i][j]->move(bugBoard, numRows, numCols)
       }
     }
   }
@@ -139,8 +169,25 @@ void Board::breedDoodlebugs() {
 void Board::moveAnts() {
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-      if (bugBoard[i][j]->returnType() == 1) {
-        //call move function here
+      
+      //check if we're looking at an ant
+      if (bugBoard[i][j] != NULL) {
+        if (bugBoard[i][j]->returnType() == 1) {
+
+          //call move function for ant
+          bugBoard[i][j]->move(bugBoard, numRows, numCols);
+
+          //set temp row and col to new ant location
+          tempRow = bugBoard[i][j]->getRow;
+          tempCol = bugBoard[i][j]->getCol;
+          
+          //copy over ant
+          bugBoard[tempRow][tempCol] = bugBoard[i][j];
+
+          //delete old doodlebug
+          delete bugBoard[i][j];
+          bugBoard[i][j] = NULL;
+        }
       }
     }
   }
