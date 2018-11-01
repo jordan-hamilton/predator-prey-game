@@ -27,3 +27,8 @@ int getRow() {
 int getCol() {
   return col;
 }
+
+//always returns false because only a doodlebug can starve
+bool starve() {
+  return false;
+}
