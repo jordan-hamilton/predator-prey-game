@@ -30,7 +30,7 @@ Ant::~Ant()
 ** If the neighboring cell in the selected direction is occupied or
 ** would move the ant off the grid, then the ant stays in the current cell.
 *********************************************************************/
-void Ant::moveCritter*** board, int row, int col)
+void Ant::move(Critter*** board, int row, int col)
 {
     // 1 = RIGHT, 2 = LEFT, 3 = UP, 4 = DOWN
     int direction = rand()% 4 + 1;
@@ -43,6 +43,7 @@ void Ant::moveCritter*** board, int row, int col)
                 if (board.getContents(row, col + 1) == NULL)
                 {
                     col += 1;
+                    age++;
                 }
             }
             break;
@@ -53,6 +54,7 @@ void Ant::moveCritter*** board, int row, int col)
                 if (board.getContents(row, col - 1) == NULL)
                 {
                     col -= 1;
+                    age++;
                 }
             }
             break;
@@ -63,6 +65,7 @@ void Ant::moveCritter*** board, int row, int col)
                 if (board.getContents(row - 1, col) == NULL)
                 {
                     row -= 1;
+                    age++;
                 }
             }
             break;
@@ -73,13 +76,14 @@ void Ant::moveCritter*** board, int row, int col)
                 if(board.getContents(row + 1, col) == NULL)
                 {
                     row += 1;
+                    age++;
                 }
             }
             break;
     }
 }
 
-void Ant::breed(Board &b)
+void Ant::breed(Critter*** board)
 {
 
 }
