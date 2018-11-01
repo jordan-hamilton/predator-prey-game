@@ -8,10 +8,10 @@ void Critter::setAge(int a) {
   age = a;
 }
 
-void setHasMoved(int i) {
+void Critter::setHasMoved(int i) {
   if (i == 0) {
     hasMoved = false;
-  }
-  else (i == 1) {
+  } else if (i == 1) {
     hasMoved = true;
   }
+}
