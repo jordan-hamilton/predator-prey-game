@@ -40,7 +40,7 @@ Doodlebug::~Doodlebug() {}
 
 //takes the board, calls the eat function if an ant exists, otherwise changes row and col location of the doodlebug.
 //Board function should call row and col to copy bug (ex. Board[Board[old location]->getRow][Board[old location]->getCol] = Board[old location]
-void Doodlebug::move(Critter*** board, int row, int col) {
+void Doodlebug::move(Critter*** board, int maxRow, int maxCol) {
   bool adjacentAnt = false;
   int direction;
   bool validMove = true;
@@ -56,7 +56,7 @@ void Doodlebug::move(Critter*** board, int row, int col) {
       }
     }
   }
-  if (row != (board.getNumRows() - 1)) { // -1 because board is 0 to numRows - 1
+  if (row != (maxRow - 1)) { // -1 because board is 0 to numRows - 1
     if (board[row + 1][col] != NULL) {
       if ( board[row + 1][col]->returnType() == 1 ) {
         adjacentAnt = true;
@@ -70,7 +70,7 @@ void Doodlebug::move(Critter*** board, int row, int col) {
       }
     }
   }
-  if (col != board.getNumCols() - 1) {
+  if (col != (maxCol - 1)) {
     if ( board[row][col + 1] != NULL ) {
       if ( board[row][col + 1]->returnType() == 1 ) {
         adjacentAnt = true;
@@ -104,11 +104,11 @@ void Doodlebug::move(Critter*** board, int row, int col) {
     validMove = false;  
     }
     //bottom row condition
-    else if ( row == getNumRows() - 1 && direction == 3) {
+    else if ( row == maxRow - 1 && direction == 3) {
     validMove = false;  
     }
     //left edge condition
-    else if (col == getNumCols() - 1 && direction == 2) {
+    else if (col == maxCol - 1 && direction == 2) {
     validMove = false;  
     }
     //if not an edge case, check for contents already
@@ -154,7 +154,7 @@ void Doodlebug::move(Critter*** board, int row, int col) {
   }
 }
 
-void Doodlebug::eat(Critter*** board) {
+void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
   int eligibleSpots = 0;
   int chosenSpot;
   
@@ -166,7 +166,7 @@ void Doodlebug::eat(Critter*** board) {
       }
     }
   }
-  if (row != (board.getNumRows() - 1)) { // -1 because board is 0 to numRows - 1
+  if (row != (maxRow - 1)) { // -1 because board is 0 to numRows - 1
     if (board[row + 1][col] != NULL) {
       if ( board[row + 1][col]->returnType() == 1 ) {
         eligibleSpots += 1;
@@ -180,7 +180,7 @@ void Doodlebug::eat(Critter*** board) {
       }
     }
   }
-  if (col != board.getNumCols() - 1) {
+  if (col != maxCol - 1) {
     if ( board[row][col + 1] != NULL ) {
       if ( board[row][col + 1]->returnType() == 1 ) {
         eligibleSpots += 1;
@@ -203,7 +203,7 @@ void Doodlebug::eat(Critter*** board) {
       }
     }
   }
-  if (row != (board.getNumRows() - 1)) { // -1 because board is 0 to numRows - 1
+  if (row != (maxRow - 1)) { // -1 because board is 0 to numRows - 1
     if (board[row + 1][col] != NULL) {
       if ( board[row + 1][col]->returnType() == 1 ) {
         eligibleSpots += 1;
@@ -227,7 +227,7 @@ void Doodlebug::eat(Critter*** board) {
       }
     }
   }
-  if (col != board.getNumCols() - 1) {
+  if (col != maxCol - 1) {
     if ( board[row][col + 1] != NULL ) {
       if ( board[row][col + 1]->returnType() == 1 ) {
         eligibleSpots += 1;
@@ -242,7 +242,7 @@ void Doodlebug::eat(Critter*** board) {
 }
 
 
-void Doodlebug::breed(Critter*** board) {
+void Doodlebug::breed(Critter*** board, int maxRow, int maxCol) {
   //TODO
 }
 
