@@ -15,3 +15,15 @@ void Critter::setHasMoved(int i) {
     hasMoved = true;
   }
 }
+
+bool getHasMoved() {
+  return hasMoved;
+}
+  
+int getRow() {
+  return row;
+}
+  
+int getCol() {
+  return col;
+}
