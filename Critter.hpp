@@ -42,6 +42,12 @@ public:
   
   //sets hasMoved to false if 0 is input, true if 1 is input
   void setHasMoved(int i);
+  
+  bool getHasMoved();
+  
+  int getRow();
+  
+  int getCol();
 };
 #endif
 
