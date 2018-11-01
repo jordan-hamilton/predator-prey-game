@@ -17,6 +17,7 @@ protected:
 
 public:
 
+  bool doesFreeAdjacentExist(Board b);
   virtual ~Critter() {};
 
   //move critter according to rules
