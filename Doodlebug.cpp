@@ -47,6 +47,9 @@ void Doodlebug::move(Critter*** board, int maxRow, int maxCol) {
 	
   //set hasMoved to true (it will be reset in breed)
   hasMoved = true;
+	
+  //increment age
+  this->incrementAge();
 
   //Check to see if there is an adjacent ant
   if (row != 0) {
