@@ -247,10 +247,14 @@ void Doodlebug::breed(Critter*** board, int maxRow, int maxCol) {
 }
 
 
-/*bool Doodlebug::starve() {
-  return false;
-  //TODO
-}*/
+bool Doodlebug::starve() {
+  if (isStarved == true) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 
 
 void Doodlebug::incrementLastMeal() { //probably don't need this anymore, built it into move instead
