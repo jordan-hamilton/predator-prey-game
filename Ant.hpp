@@ -8,12 +8,15 @@ class Ant : public Critter
 {
 private:
   bool isEaten;
+  bool breedingPending;
+  bool readyToBreed;
 
 public:
   Ant();
   Ant(int, int);
   ~Ant();
 
+  void isReadyToBreed();
   virtual void move(Board&, int, int);
   virtual void breed(Board &b);
 
