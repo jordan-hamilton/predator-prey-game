@@ -44,10 +44,10 @@ void Doodlebug::move(Critter*** board, int maxRow, int maxCol) {
   bool adjacentAnt = false;
   int direction;
   bool validMove = true;
-	
+
   //set hasMoved to true (it will be reset in breed)
   hasMoved = true;
-	
+
   //increment age
   this->incrementAge();
 
@@ -83,36 +83,36 @@ void Doodlebug::move(Critter*** board, int maxRow, int maxCol) {
 
   //if there is an adjacent ant, call the eat function and eat it
   if (adjacentAnt == true) {
-    this->eat(board);
+    this->eat(board, maxRow, maxCol);
   }
 
   //otherwise, look for open spots and take one at random, add 1 to lastMeal
   else {
     //increment last meal
     lastMeal += 1;
-	  
+
     if (lastMeal >= 3) {
       isStarved = true;
     }
-	  
+
     //Pick a direction at random, move if it is valid
     direction = rand() % 4 + 1; //1 for north, 2 for east, 3 for south, 4 for west
-    
+
     //top row condition
     if (row == 0 && direction == 1) {
     validMove = false;
     }
     //left edge condition
     else if (col == 0 && direction == 4) {
-    validMove = false;  
+    validMove = false;
     }
     //bottom row condition
     else if ( row == maxRow - 1 && direction == 3) {
-    validMove = false;  
+    validMove = false;
     }
     //left edge condition
     else if (col == maxCol - 1 && direction == 2) {
-    validMove = false;  
+    validMove = false;
     }
     //if not an edge case, check for contents already
     else if (direction == 1) {
@@ -135,7 +135,7 @@ void Doodlebug::move(Critter*** board, int maxRow, int maxCol) {
         validMove = false;
       }
     }
-	 
+
     if (validMove == true) {
       if (direction == 1) {
         row = row - 1;
@@ -160,7 +160,7 @@ void Doodlebug::move(Critter*** board, int maxRow, int maxCol) {
 void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
   int eligibleSpots = 0;
   int chosenSpot;
-  
+
   //Check to see where adjacent ants are, add to eligible spots
   if (row != 0) {
     if (board[row - 1][col] != NULL) {
@@ -192,7 +192,7 @@ void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
   }
 
   chosenSpot = rand() % eligibleSpots + 1;
-  
+
   //Find chosen spot, move row and col to it, (the ant will be deleted and this will be moved in board function), reset lastMeal
   if (row != 0) {
     if (board[row - 1][col] != NULL) {
