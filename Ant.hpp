@@ -17,7 +17,7 @@ public:
   ~Ant();
 
   void isReadyToBreed();
-  virtual void move(Board&, int, int);
+  virtual void move(Critter***, int, int);
   virtual void breed(Board &b);
 
   //print the type of bug (for use in print board function)
