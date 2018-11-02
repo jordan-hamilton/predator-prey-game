@@ -40,7 +40,10 @@ public:
 
   //sets the age = to int a
   void setAge(int a);
-  
+
+  //returns the current age of a Critter
+  int getAge();
+
   //sets hasMoved to false if 0 is input, true if 1 is input
   void setHasMoved(int i);
 
