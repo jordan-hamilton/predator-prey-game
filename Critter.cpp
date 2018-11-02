@@ -20,20 +20,20 @@ void Critter::setHasMoved(int i) {
   }
 }
 
-bool getHasMoved() {
+bool Critter::getHasMoved() {
   return hasMoved;
 }
-  
-int getRow() {
+
+int Critter::getRow() {
   return row;
 }
-  
-int getCol() {
+
+int Critter::getCol() {
   return col;
 }
 
 //always returns false because only a doodlebug can starve
-bool starve() {
+bool Critter::starve() {
   return false;
 }
 
