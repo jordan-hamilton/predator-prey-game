@@ -17,14 +17,14 @@ protected:
 
 public:
 
-  bool doesFreeAdjacentExist(Board b);
+  bool doesFreeAdjacentExist(Board &b);
   virtual ~Critter() {};
 
   //move critter according to rules
   virtual void move(Critter*** board, int row, int col) = 0;
 
   //breed critter according to rules
-  virtual void breed(Critter*** board) = 0;
+  virtual void breed(Board &b) = 0;
 
   //return true if creature has starved (only doodlebug function)
   virtual bool starve();
@@ -43,13 +43,15 @@ public:
   
   //sets hasMoved to false if 0 is input, true if 1 is input
   void setHasMoved(int i);
-  
+
   bool getHasMoved();
-  
+
   int getRow();
-  
+
   int getCol();
+
 };
+
 #endif
 
 /*Create a class named Critter that contains data and functions common to ants and doodlebugs.
