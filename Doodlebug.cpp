@@ -198,7 +198,7 @@ void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
     if (board[row - 1][col] != NULL) {
       if (board[row - 1][col]->returnType() == 1) {
         eligibleSpots += 1;
-        if (eligibleSpot == chosenSpot) {
+        if (eligibleSpots == chosenSpot) {
 	  row = row - 1;
 	  col = col;
 	  lastMeal = 0;
@@ -210,7 +210,7 @@ void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
     if (board[row + 1][col] != NULL) {
       if ( board[row + 1][col]->returnType() == 1 ) {
         eligibleSpots += 1;
-	if (eligibleSpot == chosenSpot) {
+	if (eligibleSpots == chosenSpot) {
 	  row = row + 1;
 	  col = col;
 	  lastMeal = 0;
@@ -222,7 +222,7 @@ void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
     if ( board[row][col - 1] != NULL ) {
       if ( board[row][col - 1]->returnType() == 1 ) {
         eligibleSpots += 1;
-	if (eligibleSpot == chosenSpot) {
+	if (eligibleSpots == chosenSpot) {
 	  row = row;
 	  col = col - 1;
 	  lastMeal = 0;
@@ -234,7 +234,7 @@ void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
     if ( board[row][col + 1] != NULL ) {
       if ( board[row][col + 1]->returnType() == 1 ) {
         eligibleSpots += 1;
-	if (eligibleSpot == chosenSpot) {
+	if (eligibleSpots == chosenSpot) {
 	  row = row;
 	  col = col + 1;
 	  lastMeal = 0;
