@@ -121,11 +121,11 @@ void Board::placeBug(int species) {
 void Board::moveDoodlebugs() {
   int tempRow;
   int tempCol;
-  
+
   //loop through the board
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-     
+
       //check if we're looking at a doodlebug
       if (bugBoard[i][j] != NULL) {
         if (bugBoard[i][j]->returnType() == 0) {
@@ -134,8 +134,8 @@ void Board::moveDoodlebugs() {
           bugBoard[i][j]->move(bugBoard, numRows, numCols);
 
           //set temp row and col to new doodlebug location
-          tempRow = bugBoard[i][j]->getRow;
-          tempCol = bugBoard[i][j]->getCol;
+          tempRow = bugBoard[i][j]->getRow();
+          tempCol = bugBoard[i][j]->getCol();
 
           //if the doodlebug is eating an ant, delete the ant
           if (bugBoard[tempRow][tempCol] != NULL) {
@@ -169,7 +169,7 @@ void Board::breedDoodlebugs() {
 void Board::moveAnts() {
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-      
+
       //check if we're looking at an ant
       if (bugBoard[i][j] != NULL) {
         if (bugBoard[i][j]->returnType() == 1) {
@@ -178,9 +178,9 @@ void Board::moveAnts() {
           bugBoard[i][j]->move(bugBoard, numRows, numCols);
 
           //set temp row and col to new ant location
-          tempRow = bugBoard[i][j]->getRow;
-          tempCol = bugBoard[i][j]->getCol;
-          
+          tempRow = bugBoard[i][j]->getRow();
+          tempCol = bugBoard[i][j]->getCol();
+
           //copy over ant
           bugBoard[tempRow][tempCol] = bugBoard[i][j];
 
@@ -253,11 +253,11 @@ void Board::starve() {
  //loop through the board
  for (int i = 0; i < numRows; i++) {
    for (int j = 0; j < numCols; j++) {
-     
+
      //check if we're looking at a doodlebug
      if (bugBoard[i][j] != NULL) {
        if (bugBoard[i][j]->returnType() == 0) {
-         
+
          //check whether the doodlebug starved, delete if true
          if (bugBoard[i][j]->starve() == true) {
            delete bugBoard[i][j];
