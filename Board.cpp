@@ -167,6 +167,9 @@ void Board::breedDoodlebugs() {
 }
 
 void Board::moveAnts() {
+  int tempRow;
+  int tempCol;
+
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
 
