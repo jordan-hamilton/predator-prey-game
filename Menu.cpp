@@ -52,7 +52,7 @@ int Menu::getChoice()
         std::getline(std::cin,input);
 
         // Checks all of input string to identify whether it is an integer
-        if ((std::all_of(input.begin(), input.end(), ::isdigit)))
+        if ((std::all_of(input.begin(), input.end(), ::isdigit)) && !input.empty())
         {
             return std::stoi(input);
         }
