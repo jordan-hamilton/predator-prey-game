@@ -245,8 +245,98 @@ void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
 }
 
 
-void Doodlebug::breed(Critter*** board, int maxRow, int maxCol) {
-  //TODO
+void Doodlebug::breed(Board &b) {
+  // Booleans to determine if the surrounding cells are occupied and if a new
+  // Doodlebug could be placed successfully in a cell.
+  bool canBreed = false, hasBred = false;
+  // Integer to represent a direction on the board: 1 for north, 2 for east, 3
+  // for south, 4 for west.
+  int direction;
+  // Pointer to a Critter initialized to NULL
+  Critter* babyDoodlebug = NULL;
+
+
+  // Attempt to breed a Doodlebug into an empty cell only if the Doodlebug's age
+  // is divisible by 8
+  if (age > 0 && age % 8 == 0) {
+
+    if (!canBreed && row != 0) {
+
+      if ( !b.getContents(row - 1, col) ) {
+        canBreed = true;
+      }
+
+    }
+
+    if (!canBreed && row != b.getNumRows() - 1) {
+
+      if ( !b.getContents(row + 1, col) ) {
+        canBreed = true;
+      }
+
+    }
+
+    if (!canBreed && col != 0) {
+
+      if (!b.getContents(row, col - 1)) {
+        canBreed = true;
+      }
+
+    }
+
+    if (!canBreed && col != b.getNumCols() - 1) {
+
+      if ( !b.getContents(row, col + 1) ) {
+        canBreed = true;
+      }
+
+    }
+
+    if (canBreed) {
+      // Generate a random number, then verify that number corresponds to a cell
+      // on the board that is also empty before placing a new Doodlebug via
+      // setContents. Loop until we can place a new Doodlebug on the board.
+      do {
+        direction = rand() % 4 + 1;
+
+        switch (direction) {
+
+          case 1:   if ( row != 0 && !b.getContents(row - 1, col) ) {
+                      babyDoodlebug = new Doodlebug(row - 1, col);
+                      b.setContents(babyDoodlebug, row - 1, col);
+                      hasBred = true;
+                    }
+                    break;
+
+          case 2:   if ( col != b.getNumCols() - 1 && !b.getContents(row, col + 1) ) {
+                      babyDoodlebug = new Doodlebug(row, col + 1);
+                      b.setContents(babyDoodlebug, row, col + 1);
+                      hasBred = true;
+                    }
+                    break;
+
+          case 3:   if ( row != b.getNumRows() - 1 && !b.getContents(row + 1, col) ) {
+                      babyDoodlebug = new Doodlebug(row + 1, col);
+                      b.setContents(babyDoodlebug, row + 1, col);
+                      hasBred = true;
+                    }
+                    break;
+
+          case 4:   if ( col != 0 && !b.getContents(row, col - 1) ) {
+                      babyDoodlebug = new Doodlebug(row, col - 1);
+                      b.setContents(babyDoodlebug, row, col - 1);
+                      hasBred = true;
+                    }
+                    break;
+        }
+
+
+      } while(!hasBred);
+    }
+
+
+  }
+
 }
 
 
