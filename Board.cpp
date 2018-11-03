@@ -297,25 +297,14 @@ void Board::cleanBoard() {
   for (int i = 0; i < numRows; i++) {
 
    for (int j = 0; j < numCols; j++) {
-
-     if (bugBoard[i][j] != NULL) {
        delete bugBoard[i][j];
        bugBoard[i][j] = NULL;
      }
-
+     delete[] bugBoard[i];
+     bugBoard[i] = NULL;
    }
 
-  for (int i = 0; i < numRows; i++) {
-
-    if (bugBoard[i]) {
-      delete[] bugBoard[i];
-      bugBoard[i] = NULL;
-    }
-
-	 }
-
-  }
-
-  delete[] bugBoard;
+  delete [] bugBoard;
+  bugBoard = NULL;
 
 }
