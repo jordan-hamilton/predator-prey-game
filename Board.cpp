@@ -178,7 +178,7 @@ void Board::moveAnts() {
         if (bugBoard[i][j]->returnType() == 1) {
 
           //call move function for ant
-          bugBoard[i][j]->move(bugBoard, numRows, numCols);
+          bugBoard[i][j]->move(bugBoard, i, j);
 
           //set temp row and col to new ant location
           tempRow = bugBoard[i][j]->getRow();
