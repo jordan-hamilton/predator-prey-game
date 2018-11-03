@@ -45,28 +45,31 @@ bool Critter::starve() {
 bool Critter::doesFreeAdjacentExist(Board &b)
 {
 	//Checking up
-	if (b.getContents(this->row -1, this->col) == NULL)
+	if ( row - 1 >= 0 && !b.getContents(row - 1, col) )
 	{
 		return true;
 	}
 
 	//Checking Right
-	else if (b.getContents(row, col + 1) == NULL)
+	else if ( col + 1 < b.getNumCols() && !b.getContents(row, col + 1) )
 	{
 		return true;
 	}
 
 	//Down
-	else if (b.getContents(row + 1, col) == NULL)
+	else if ( row + 1 < b.getNumCols() && !b.getContents(row + 1, col) )
 	{
 		return true;
 	}
 
 	//Left
-	else if (b.getContents(row, col - 1) == NULL)
+	else if ( col - 1 >= 0 && b.getContents(row, col - 1) )
 	{
 		return true;
 	}
 
-	else return false;
+	else {
+    return false;
+  }
+  
 }
