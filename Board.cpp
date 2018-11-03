@@ -247,6 +247,11 @@ void Board::printBoard() {
       //print side border, move to new line
       cout << "|" << endl;
     }
+	
+    //print bottom border
+    for (int i = 0; i < numRows + 2; i++) {
+      cout << "-";
+    }
 }
 
 Critter* Board::getContents(int row, int col) {
