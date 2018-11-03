@@ -180,17 +180,17 @@ void Board::moveAnts() {
     for (int j = 0; j < numCols; j++) {
 
       //check if we're looking at an ant
-      if (bugBoard[i][j] != NULL) {
+      if (bugBoard[i][j]) {
         if (bugBoard[i][j]->returnType() == 1 && bugBoard[i][j]->getHasMoved() == false) {
 
           //call move function for ant
-          bugBoard[i][j]->move(bugBoard, i, j);
+          bugBoard[i][j]->move(bugBoard, numRows, numCols);
 
           //set temp row and col to new ant location
           tempRow = bugBoard[i][j]->getRow();
           tempCol = bugBoard[i][j]->getCol();
 
-	  //copy over ant
+	         //copy over ant
           if (tempRow != i || tempCol != j) {
             bugBoard[tempRow][tempCol] = bugBoard[i][j];
 
