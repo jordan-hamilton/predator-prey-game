@@ -84,10 +84,7 @@ void Ant::move(Critter*** board, int row, int col)
 }
 
 
-void Ant::breed(Critter*** board)
-{
 
-}
 
 //print the type of bug (for use in print board function)
 void Ant::printType() {
