@@ -14,7 +14,6 @@ public:
   Ant(int, int);
   ~Ant();
 
-  bool isReadyToBreed();
   virtual void move(Critter***, int, int);
   virtual void breed(Board &b);
 
