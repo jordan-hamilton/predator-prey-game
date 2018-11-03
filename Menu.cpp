@@ -63,3 +63,9 @@ int Menu::getChoice()
         }
     }
 }
+
+void Menu::run()
+{
+    Menu menu;
+    menu.addOption("Enter the number of steps to run the Doodlebug/Ant simulation.");
+}
