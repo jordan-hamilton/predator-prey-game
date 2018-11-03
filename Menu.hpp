@@ -24,5 +24,6 @@ public:
     void displayMenu();
     void addOption(std::string);
     int getChoice();
+    void run();
 };
 #endif
