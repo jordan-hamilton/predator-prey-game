@@ -189,7 +189,7 @@ void Board::moveAnts() {
           //set temp row and col to new ant location
           tempRow = bugBoard[i][j]->getRow();
           tempCol = bugBoard[i][j]->getCol();
-	  
+
 	  //copy over ant
           if (tempRow != i || tempCol != j) {
             bugBoard[tempRow][tempCol] = bugBoard[i][j];
@@ -247,11 +247,12 @@ void Board::printBoard() {
       //print side border, move to new line
       cout << "|" << endl;
     }
-	
+
     //print bottom border
     for (int i = 0; i < numRows + 2; i++) {
       cout << "-";
     }
+    cout << endl;
 }
 
 Critter* Board::getContents(int row, int col) {
