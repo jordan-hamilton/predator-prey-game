@@ -14,6 +14,8 @@ protected:
   int row;
   int age;
   bool hasMoved;
+  bool breedingPending;
+  bool readyToBreed;
 
 public:
 
