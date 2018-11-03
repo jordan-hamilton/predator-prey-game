@@ -277,7 +277,7 @@ void Board::starve() {
 }
 
 //deletes the dynamic data
-void cleanBoard() {
+void Board::cleanBoard() {
   for (int i = 0; i < numRows; i++) {
    for (int j = 0; j < numCols; j++) {
      if (bugBoard[i][j] != NULL) {
@@ -285,7 +285,7 @@ void cleanBoard() {
        bugBoard[i][j] = NULL;
      }
    }
-   
+
   for (int i = 0; i < numRows; i++) {
 		delete[] bugBoard[i];
 	}
