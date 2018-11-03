@@ -7,7 +7,7 @@
 ** is valid (integers).
 *********************************************************************/
 #include "Menu.hpp"
-
+#include "Board.hpp"
 #include <algorithm>
 #include <climits>
 
@@ -68,9 +68,17 @@ void Menu::run()
 {
     Menu menu;
     menu.addOption("Enter the number of steps to run the Doodlebug/Ant simulation.");
+    menu.
     int numSteps = menu.getChoice();
+    menu.displayMenu();
     for (int i = 0; i < numSteps; i++)
     {
-        // Run simulation
+        Board board;
+        board.printBoard();
+        board.moveAnts();
+        board.moveDoodlebugs();
+        board.starve();
+        board.breedAnts();
+        board.breedDoodlebugs(); 
     }
 }
