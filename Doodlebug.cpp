@@ -136,7 +136,7 @@ void Doodlebug::move(Critter*** board, int maxRow, int maxCol) {
       }
     }
     else if (direction == 4) {
-      if (board[row][col + 1] != NULL) {
+      if (board[row][col - 1] != NULL) {
         validMove = false;
       }
     }
