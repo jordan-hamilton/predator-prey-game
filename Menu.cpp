@@ -71,7 +71,6 @@ void Menu::run()
     menu.addOption("Enter the number of steps to run the Doodlebug/Ant simulation.");
     menu.displayMenu();
     int numSteps = menu.getChoice();
-    menu.displayMenu();
     for (int i = 0; i < numSteps; i++)
     {
         Board board;
