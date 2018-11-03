@@ -252,29 +252,33 @@ void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
 
 
 void Doodlebug::breed(Board &b) {
+
   // Booleans to determine if the surrounding cells are occupied and if a new
   // Doodlebug could be placed successfully in a cell.
   bool canBreed = false, hasBred = false;
   // Integer to represent a direction on the board: 1 for north, 2 for east, 3
   // for south, 4 for west.
   int direction;
-  // Pointer to a Critter initialized to NULL
+  // A pointer to a Critter that breeding will place on the board
   Critter* babyDoodlebug = NULL;
 
-
   // Attempt to breed a Doodlebug into an empty cell only if the Doodlebug's age
-  // is divisible by 8
-  if (age > 0 && age % 8 == 0) {
+  // is not 0 and divisible by 8, or if the Doodlebug was previously able to
+  // breed, but no adjacent cells were available during that time step.
+  if ( (age > 0 && age % 8 == 0) || breedingPending) {
 
     if (!canBreed && row != 0) {
 
       if ( !b.getContents(row - 1, col) ) {
+        // There's an available cell to the north.
         canBreed = true;
       }
 
     }
 
     if (!canBreed && row != b.getNumRows() - 1) {
+      // We haven't found a place to breed yet and
+      // there's an available cell to the south.
 
       if ( !b.getContents(row + 1, col) ) {
         canBreed = true;
@@ -283,6 +287,8 @@ void Doodlebug::breed(Board &b) {
     }
 
     if (!canBreed && col != 0) {
+      // we haven't found a place to breed yet and
+      // there's an available cell to the west.
 
       if (!b.getContents(row, col - 1)) {
         canBreed = true;
@@ -291,6 +297,8 @@ void Doodlebug::breed(Board &b) {
     }
 
     if (!canBreed && col != b.getNumCols() - 1) {
+      // We haven't found a place to breed yet and
+      // there's an available cell to the east.
 
       if ( !b.getContents(row, col + 1) ) {
         canBreed = true;
@@ -338,11 +346,21 @@ void Doodlebug::breed(Board &b) {
 
 
       } while(!hasBred);
+
+    } else {
+      // Set breedingPending to true if we could have bred, but there wasn't an
+      // empty cell adjacent to the Doodlebug. We'll try again during the next
+      // time step.
+      breedingPending = true;
     }
 
 
   }
+
+  // Reset the hasMoved boolean so this Doodlebug can perform a move the next
+  // time its move function is called.
   hasMoved = false;
+
 }
 
 
