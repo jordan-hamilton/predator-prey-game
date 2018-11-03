@@ -127,9 +127,11 @@ survived three more time steps. */
 void Ant::breed(Board &b)
 {
 
+  Ant* babyAnt = NULL;
+
   //allow the Ant to move the next time the move function is called
   hasMoved = false;
-  
+
 	if (breedingPending == true && doesFreeAdjacentExist(b) == true)
 	{
 		int tempDirection;
@@ -141,36 +143,41 @@ void Ant::breed(Board &b)
 
 			if (tempDirection == 1)
 			{
-				if (b.getContents(row -1, col) == NULL)
+				if ( !b.getContents(row - 1, col) )
 				{
-					new Ant(row -1, col);
+					babyAnt = new Ant(row - 1, col);
+          b.setContents(babyAnt, row - 1, col);
 					hasCompleted = true;
 				}
 			}
 
 			else if (tempDirection == 2) //Right
 			{
-				if (b.getContents(row, col + 1) == NULL)
+				if ( !b.getContents(row, col + 1) )
 				{
-					new Ant(row, col + 1);
+					babyAnt = new Ant(row, col + 1);
+          b.setContents(babyAnt, row, col + 1);
 					hasCompleted = true;
 				}
 			}
 
 			else if (tempDirection == 3) //Down
 			{
-				if (b.getContents(row + 1, col) == NULL)
+				if ( !b.getContents(row + 1, col) )
 				{
-					new Ant(row + 1, col);
+					babyAnt = new Ant(row + 1, col);
+          b.setContents(babyAnt, row + 1, col);
 					hasCompleted = true;
 				}
 			}
 
 			else if (tempDirection == 4) //Left
 			{
-				if (b.getContents(row, col - 1) == NULL)
+				if (!b.getContents(row, col - 1))
 				{
-					new Ant(row, col - 1);
+					babyAnt = new Ant(row, col - 1);
+          b.setContents(babyAnt, row, col - 1);
+          hasCompleted = true;
 				}
 			}
 		}
