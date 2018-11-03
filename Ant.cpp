@@ -7,8 +7,10 @@ Ant::Ant()
     row = -1;
     col = -1;
     age = 0;
+    breedingPending = false;
     isEaten = false;
     hasMoved = false;
+    readyToBreed = false;
 }
 
 // Ant constructor
@@ -17,8 +19,10 @@ Ant::Ant(int r, int c)
     row = r;
     col = c;
     age = 0;
+    breedingPending = false;
     isEaten = false;
     hasMoved = false;
+    readyToBreed = false;
 }
 
 // Ant Destructor

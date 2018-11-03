@@ -23,9 +23,10 @@ Doodlebug::Doodlebug() {
   col = -1;
   age = 0;
   breedingPending = false;
-  lastMeal = 0;
-  isStarved = false;
   hasMoved = false;
+  isStarved = false;
+  lastMeal = 0;
+  readyToBreed = false;
   cout << "Error = default doodlebug constructor called. Only overloaded constructor should be called.\n";
 }
 
@@ -35,9 +36,10 @@ Doodlebug::Doodlebug(int r, int c) {
    col = c;
    age = 0;
    breedingPending = false;
-   lastMeal = 0;
-   isStarved = false;
    hasMoved = false;
+   isStarved = false;
+   lastMeal = 0;
+   readyToBreed = false;
 }
 
 //Destructor. Not doing anything special at the moment.
