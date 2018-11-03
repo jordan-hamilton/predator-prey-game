@@ -22,7 +22,9 @@ Doodlebug::Doodlebug() {
   row = -1;
   col = -1;
   age = 0;
+  breedingPending = false;
   lastMeal = 0;
+  isStarved = false;
   hasMoved = false;
   cout << "Error = default doodlebug constructor called. Only overloaded constructor should be called.\n";
 }
@@ -32,6 +34,7 @@ Doodlebug::Doodlebug(int r, int c) {
    row = r;
    col = c;
    age = 0;
+   breedingPending = false;
    lastMeal = 0;
    isStarved = false;
    hasMoved = false;
