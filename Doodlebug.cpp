@@ -23,6 +23,7 @@ Doodlebug::Doodlebug() {
   col = -1;
   age = 0;
   lastMeal = 0;
+  hasMoved = false;
   cout << "Error = default doodlebug constructor called. Only overloaded constructor should be called.\n";
 }
 
@@ -33,6 +34,7 @@ Doodlebug::Doodlebug(int r, int c) {
    age = 0;
    lastMeal = 0;
    isStarved = false;
+   hasMoved = false;
 }
 
 //Destructor. Not doing anything special at the moment.
@@ -193,6 +195,10 @@ void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
 
   chosenSpot = rand() % eligibleSpots + 1;
 
+
+  //reset eligibleSpots
+  eligibleSpots = 0;
+
   //Find chosen spot, move row and col to it, (the ant will be deleted and this will be moved in board function), reset lastMeal
   if (row != 0) {
     if (board[row - 1][col] != NULL) {
@@ -223,8 +229,8 @@ void Doodlebug::eat(Critter*** board, int maxRow, int maxCol) {
       if ( board[row][col - 1]->returnType() == 1 ) {
         eligibleSpots += 1;
 	if (eligibleSpots == chosenSpot) {
-	  row = row;
-	  col = col - 1;
+	  this->row = row;
+	  this->col = col - 1;
 	  lastMeal = 0;
 	}
       }
