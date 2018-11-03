@@ -1,6 +1,5 @@
 #include "Ant.hpp"
 #include "Board.hpp"
-
 // Default constructor for Ant(), set variables to default values
 Ant::Ant()
 {
@@ -10,7 +9,6 @@ Ant::Ant()
     breedingPending = false;
     isEaten = false;
     hasMoved = false;
-    readyToBreed = false;
 }
 
 // Ant constructor
@@ -22,7 +20,6 @@ Ant::Ant(int r, int c)
     breedingPending = false;
     isEaten = false;
     hasMoved = false;
-    readyToBreed = false;
 }
 
 // Ant Destructor
@@ -116,99 +113,115 @@ randomly attempt to pick another one.  If there is no empty cell available, no b
 Once an offspring is produced, an ant cannot produce an offspring again until it has
 survived three more time steps. */
 
-/*
- * breed is intended to be run at the end of every turn. If both a pending breeding exists and an adjacent square exists,
- * it will randomly select a direction to spawn a new ant in. breedingPending is then set to false.
- *
- * If either case is false,the function simply returns without modifying anything and the ant will have an opportunity
- * to breed on it's next turn.
- *
- * Within the while loop, the tempDirection and hasCompleted variables are local. tempDirection is randomly generated,
- * then modulo'd to get a result between 1 and 4. Once it has a result, it will apply the actions to the space that is selected.
- * If the space ends up not being empty, it'll go to the end of the loop, a new number will be randomly selected, and that will be
- * applied instead. This will be repeated until a space is spawned with a new ant. This will not run into a problem of having four non
- * free spaces since the doesFreeAdjacentExist() function must return true for that part of the loop to execute.
- */
-void Ant::breed(Board &b)
-{
-  // A pointer to an Ant to pass to setContents if we're able to find a cell
-  // where we can breed an ant.
-  Ant* babyAnt = NULL;
-
-  //allow the Ant to move the next time the move function is called
-  hasMoved = false;
-
-	if (isReadyToBreed() && doesFreeAdjacentExist(b))
-	{
-		bool hasCompleted = false;
-
-		while (hasCompleted == false)
-		{
-			int tempDirection = rand() % 4 + 1;
-
-			if (tempDirection == 1) // Up
-			{
-				if ( row - 1 >= 0 && !b.getContents(row - 1, col) )
-				{
-					babyAnt = new Ant(row - 1, col);
-          b.setContents(babyAnt, row - 1, col);
-					hasCompleted = true;
-          breedingPending = false;
-				}
-			}
-
-			else if (tempDirection == 2) // Right
-			{
-				if ( col + 1 < b.getNumCols() && !b.getContents(row, col + 1) )
-				{
-					babyAnt = new Ant(row, col + 1);
-          b.setContents(babyAnt, row, col + 1);
-					hasCompleted = true;
-          breedingPending = false;
-				}
-			}
-
-			else if (tempDirection == 3) // Down
-			{
-				if ( row + 1 < b.getNumRows() && !b.getContents(row + 1, col) )
-				{
-					babyAnt = new Ant(row + 1, col);
-          b.setContents(babyAnt, row + 1, col);
-					hasCompleted = true;
-          breedingPending = false;
-				}
-			}
-
-			else if (tempDirection == 4) // Left
-			{
-				if ( col - 1 >= 0 && !b.getContents(row, col - 1))
-				{
-					babyAnt = new Ant(row, col - 1);
-          b.setContents(babyAnt, row, col - 1);
-          hasCompleted = true;
-          breedingPending = false;
-				}
-			}
-		}
-	} else if ( isReadyToBreed() && !doesFreeAdjacentExist(b) ) {
-    breedingPending = true;
-  } //If there is a return, breedingPending will remain true and it will be evaluated again on the next round, giving the ant the opportunity to breed again.
-
-}
+void Ant::breed(Board &b) {
 
 
+  // Booleans to determine if the surrounding cells are occupied and if a new
+  // Ant could be placed successfully in a cell.
+  bool canBreed = false, hasBred = false;
+  // Integer to represent a direction on the board: 1 for north, 2 for east, 3
+  // for south, 4 for west.
+  int direction;
+  // A pointer to a Critter that breeding will place on the board
+  Critter* babyAnt = NULL;
 
-/*
- * isReadyToBreed is intended to be run after every turn. It will check to see if the ant's age allows it to breed. If there's already
- * a pending breeding, the if statement will skip over the operation and the function will end.
- */
-bool Ant::isReadyToBreed()
-{
+  // Attempt to breed a Ant into an empty cell only if the Ant's age
+  // is not 0 and divisible by 8, or if the Ant was previously able to
+  // breed, but no adjacent cells were available during that time step.
+  if ( (age > 0 && age % 3 == 0) || breedingPending) {
 
-	if ( (age > 0 && age % 3 == 0) || breedingPending) {
-    return true;
-	} else {
-    return false;
+    if (!canBreed && row != 0) {
+
+      if ( !b.getContents(row - 1, col) ) {
+        // There's an available cell to the north.
+        canBreed = true;
+      }
+
+    }
+
+    if (!canBreed && row != b.getNumRows() - 1) {
+      // We haven't found a place to breed yet and
+      // there's an available cell to the south.
+
+      if ( !b.getContents(row + 1, col) ) {
+        canBreed = true;
+      }
+
+    }
+
+    if (!canBreed && col != 0) {
+      // we haven't found a place to breed yet and
+      // there's an available cell to the west.
+
+      if (!b.getContents(row, col - 1)) {
+        canBreed = true;
+      }
+
+    }
+
+    if (!canBreed && col != b.getNumCols() - 1) {
+      // We haven't found a place to breed yet and
+      // there's an available cell to the east.
+
+      if ( !b.getContents(row, col + 1) ) {
+        canBreed = true;
+      }
+
+    }
+
+    if (canBreed) {
+      // Generate a random number, then verify that number corresponds to a cell
+      // on the board that is also empty before placing a new Ant via
+      // setContents. Loop until we can place a new Ant on the board.
+      do {
+        direction = rand() % 4 + 1;
+
+        switch (direction) {
+
+          case 1:   if ( row != 0 && !b.getContents(row - 1, col) ) {
+                      babyAnt = new Ant(row - 1, col);
+                      b.setContents(babyAnt, row - 1, col);
+                      hasBred = true;
+                    }
+                    break;
+
+          case 2:   if ( col != b.getNumCols() - 1 && !b.getContents(row, col + 1) ) {
+                      babyAnt = new Ant(row, col + 1);
+                      b.setContents(babyAnt, row, col + 1);
+                      hasBred = true;
+                    }
+                    break;
+
+          case 3:   if ( row != b.getNumRows() - 1 && !b.getContents(row + 1, col) ) {
+                      babyAnt = new Ant(row + 1, col);
+                      b.setContents(babyAnt, row + 1, col);
+                      hasBred = true;
+                    }
+                    break;
+
+          case 4:   if ( col != 0 && !b.getContents(row, col - 1) ) {
+                      babyAnt = new Ant(row, col - 1);
+                      b.setContents(babyAnt, row, col - 1);
+                      hasBred = true;
+                    }
+                    break;
+        }
+
+
+      } while(!hasBred);
+
+    } else {
+      // Set breedingPending to true if we could have bred, but there wasn't an
+      // empty cell adjacent to the Ant. We'll try again during the next
+      // time step.
+      breedingPending = true;
+    }
+
+
   }
+
+  // Reset the hasMoved boolean so this Ant can perform a move the next
+  // time its move function is called.
+  hasMoved = false;
 
 }
