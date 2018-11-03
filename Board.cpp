@@ -128,7 +128,7 @@ void Board::moveDoodlebugs() {
 
       //check if we're looking at a doodlebug
       if (bugBoard[i][j] != NULL) {
-        if (bugBoard[i][j]->returnType() == 0) {
+        if (bugBoard[i][j]->returnType() == 0 && bugBoard[i][j]->getHasMoved() == false) { //need a hasMoved clause here
 
           //call move function for doodlebug
           bugBoard[i][j]->move(bugBoard, numRows, numCols);
@@ -141,15 +141,19 @@ void Board::moveDoodlebugs() {
           if (bugBoard[tempRow][tempCol] != NULL) {
             if (bugBoard[tempRow][tempCol]->returnType() == 1) {
               delete bugBoard[tempRow][tempCol];
+			  bugBoard[tempRow][tempCol] = NULL;
             }
           }
 
-          //copy over doodlebug
-          bugBoard[tempRow][tempCol] = bugBoard[i][j];
+          //copy over doodlebug if it moved
+		  if (tempRow != i || tempCol != j) {
 
-          //delete old doodlebug
-          delete bugBoard[i][j];
-          bugBoard[i][j] = NULL;
+			  //bugBoard[tempRow][tempCol] = new Doodlebug(tempRow, tempCol);
+			  bugBoard[tempRow][tempCol] = bugBoard[i][j];
+
+			  //delete old doodlebug
+			  bugBoard[i][j] = NULL;
+		  }
         }
       }
     }
@@ -175,7 +179,7 @@ void Board::moveAnts() {
 
       //check if we're looking at an ant
       if (bugBoard[i][j] != NULL) {
-        if (bugBoard[i][j]->returnType() == 1) {
+        if (bugBoard[i][j]->returnType() == 1 && bugBoard[i][j]->getHasMoved() == false) {
 
           //call move function for ant
           bugBoard[i][j]->move(bugBoard, i, j);
@@ -183,13 +187,14 @@ void Board::moveAnts() {
           //set temp row and col to new ant location
           tempRow = bugBoard[i][j]->getRow();
           tempCol = bugBoard[i][j]->getCol();
+	  
+	  //copy over ant
+          if (tempRow != i || tempCol != j) {
+            bugBoard[tempRow][tempCol] = bugBoard[i][j];
 
-          //copy over ant
-          bugBoard[tempRow][tempCol] = bugBoard[i][j];
-
-          //delete old doodlebug
-          delete bugBoard[i][j];
-          bugBoard[i][j] = NULL;
+            //null old location
+            bugBoard[i][j] = NULL;
+	  }
         }
       }
     }
