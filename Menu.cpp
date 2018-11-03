@@ -29,6 +29,7 @@ void Menu::displayMenu()
         std::cout << menuVector[i] << std::endl;
     }
     std::cout << "\n";
+    std::cout << "Steps: ";
 }
 
 /*********************************************************************
@@ -74,6 +75,7 @@ void Menu::run()
     for (int i = 0; i < numSteps; i++)
     {
         Board board;
+        std::cout << "Steps: "<<i + 1 << std::endl;
         board.printBoard();
         board.moveAnts();
         board.moveDoodlebugs();
