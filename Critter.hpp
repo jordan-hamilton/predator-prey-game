@@ -15,11 +15,9 @@ protected:
   int age;
   bool hasMoved;
   bool breedingPending;
-  bool readyToBreed;
 
 public:
-
-  bool doesFreeAdjacentExist(Board &b);
+  
   virtual ~Critter() {};
 
   //move critter according to rules
