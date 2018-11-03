@@ -206,8 +206,10 @@ void Board::moveAnts() {
 void Board::breedAnts() {
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numCols; j++) {
-      if (bugBoard[i][j]->returnType() == 1) {
-        bugBoard[i][j]->breed(*this);
+      if (bugBoard[i][j] != NULL) {
+        if (bugBoard[i][j]->returnType() == 1) {
+          bugBoard[i][j]->breed(*this);
+        }
       }
     }
   }
