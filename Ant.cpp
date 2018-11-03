@@ -8,6 +8,7 @@ Ant::Ant()
     col = -1;
     age = 0;
     isEaten = false;
+    hasMoved = false;
 }
 
 // Ant constructor
@@ -17,6 +18,7 @@ Ant::Ant(int r, int c)
     col = c;
     age = 0;
     isEaten = false;
+    hasMoved = false;
 }
 
 // Ant Destructor
@@ -81,6 +83,8 @@ void Ant::move(Critter*** board, int maxRow, int maxCol)
 		}
 		break;
 	}
+  //prevent the Ant from moving multiple times as we loop through the array
+  hasMoved = true;
 }
 
 
@@ -122,6 +126,10 @@ survived three more time steps. */
  */
 void Ant::breed(Board &b)
 {
+
+  //allow the Ant to move the next time the move function is called
+  hasMoved = false;
+  
 	if (breedingPending == true && doesFreeAdjacentExist(b) == true)
 	{
 		int tempDirection;
