@@ -89,6 +89,7 @@ void Ant::move(Critter*** board, int maxRow, int maxCol)
 	}
   //prevent the Ant from moving multiple times as we loop through the array
   hasMoved = true;
+
 }
 
 
@@ -130,63 +131,69 @@ survived three more time steps. */
  */
 void Ant::breed(Board &b)
 {
-
+  // A pointer to an Ant to pass to setContents if we're able to find a cell
+  // where we can breed an ant.
   Ant* babyAnt = NULL;
 
   //allow the Ant to move the next time the move function is called
   hasMoved = false;
 
-	if (breedingPending == true && doesFreeAdjacentExist(b) == true)
+	if (isReadyToBreed() && doesFreeAdjacentExist(b))
 	{
-		int tempDirection;
 		bool hasCompleted = false;
 
 		while (hasCompleted == false)
 		{
-			tempDirection = rand() % 4 + 1;
+			int tempDirection = rand() % 4 + 1;
 
-			if (tempDirection == 1)
+			if (tempDirection == 1) // Up
 			{
-				if ( !b.getContents(row - 1, col) )
+				if ( row - 1 >= 0 && !b.getContents(row - 1, col) )
 				{
 					babyAnt = new Ant(row - 1, col);
           b.setContents(babyAnt, row - 1, col);
 					hasCompleted = true;
+          breedingPending = false;
 				}
 			}
 
-			else if (tempDirection == 2) //Right
+			else if (tempDirection == 2) // Right
 			{
-				if ( !b.getContents(row, col + 1) )
+				if ( col + 1 < b.getNumCols() && !b.getContents(row, col + 1) )
 				{
 					babyAnt = new Ant(row, col + 1);
           b.setContents(babyAnt, row, col + 1);
 					hasCompleted = true;
+          breedingPending = false;
 				}
 			}
 
-			else if (tempDirection == 3) //Down
+			else if (tempDirection == 3) // Down
 			{
-				if ( !b.getContents(row + 1, col) )
+				if ( row + 1 < b.getNumRows() && !b.getContents(row + 1, col) )
 				{
 					babyAnt = new Ant(row + 1, col);
           b.setContents(babyAnt, row + 1, col);
 					hasCompleted = true;
+          breedingPending = false;
 				}
 			}
 
-			else if (tempDirection == 4) //Left
+			else if (tempDirection == 4) // Left
 			{
-				if (!b.getContents(row, col - 1))
+				if ( col - 1 >= 0 && !b.getContents(row, col - 1))
 				{
 					babyAnt = new Ant(row, col - 1);
           b.setContents(babyAnt, row, col - 1);
           hasCompleted = true;
+          breedingPending = false;
 				}
 			}
 		}
-	}
-	else return; //If there is a return, breedingPending will remain true and it will be evaluated again on the next round, giving the ant the opportunity to breed again.
+	} else if ( isReadyToBreed() && !doesFreeAdjacentExist(b) ) {
+    breedingPending = true;
+  } //If there is a return, breedingPending will remain true and it will be evaluated again on the next round, giving the ant the opportunity to breed again.
+
 }
 
 
@@ -195,10 +202,13 @@ void Ant::breed(Board &b)
  * isReadyToBreed is intended to be run after every turn. It will check to see if the ant's age allows it to breed. If there's already
  * a pending breeding, the if statement will skip over the operation and the function will end.
  */
-void Ant::isReadyToBreed()
+bool Ant::isReadyToBreed()
 {
-	if (age % 3 == 0 && readyToBreed == false)
-	{
-		readyToBreed = true;
-	}
+
+	if ( (age > 0 && age % 3 == 0) || breedingPending) {
+    return true;
+	} else {
+    return false;
+  }
+
 }
