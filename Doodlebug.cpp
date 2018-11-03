@@ -342,7 +342,7 @@ void Doodlebug::breed(Board &b) {
 
 
   }
-
+  hasMoved = true;
 }
 
 
