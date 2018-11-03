@@ -42,6 +42,8 @@ class Board {
     int getNumRows();
 
     void starve();
+  
+    void cleanBoard();
 
 };
 
