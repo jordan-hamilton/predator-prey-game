@@ -8,8 +8,6 @@ class Ant : public Critter
 {
 private:
   bool isEaten;
-  bool breedingPending;
-  bool readyToBreed;
 
 public:
   Ant();
