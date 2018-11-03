@@ -244,7 +244,7 @@ Critter* Board::getContents(int row, int col) {
   return bugBoard[row][col];
 }
 
-Critter* Board::setContents(Critter* newCritter, int row, int col) {
+void Board::setContents(Critter* newCritter, int row, int col) {
   bugBoard[row][col] = newCritter;
 }
 

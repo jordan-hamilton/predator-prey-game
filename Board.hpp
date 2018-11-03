@@ -35,7 +35,7 @@ class Board {
 
     Critter* getContents(int row, int col);
 
-    Critter* setContents(Critter* newCritter, int row, int col);
+    void setContents(Critter* newCritter, int row, int col);
 
     int getNumCols();
 
