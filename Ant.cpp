@@ -118,18 +118,18 @@ survived three more time steps. */
  * then modulo'd to get a result between 1 and 4. Once it has a result, it will apply the actions to the space that is selected.
  * If the space ends up not being empty, it'll go to the end of the loop, a new number will be randomly selected, and that will be
  * applied instead. This will be repeated until a space is spawned with a new ant. This will not run into a problem of having four non
- * free spaces since the doesAdjacentExist() function must return true for that part of the loop to execute.
+ * free spaces since the doesFreeAdjacentExist() function must return true for that part of the loop to execute.
  */
 void Ant::breed(Board &b)
 {
-	if (breedingPending == true && b.doesAdjacentExist() == true)
+	if (breedingPending == true && doesFreeAdjacentExist(b) == true)
 	{
 		int tempDirection;
 		bool hasCompleted = false;
 
 		while (hasCompleted == false)
 		{
-			rand() % 4 + 1 = tempDirection;
+			tempDirection = rand() % 4 + 1;
 
 			if (tempDirection == 1)
 			{
