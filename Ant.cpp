@@ -30,7 +30,7 @@ Ant::~Ant()
 ** If the neighboring cell in the selected direction is occupied or
 ** would move the ant off the grid, then the ant stays in the current cell.
 *********************************************************************/
-void Ant::move(Critter*** board, int row, int col)
+void Ant::move(Critter*** board, int maxRow, int maxCol)
 {
 	// 1 = RIGHT, 2 = LEFT, 3 = UP, 4 = DOWN
 	int direction = rand() % 4 + 1;
@@ -38,7 +38,7 @@ void Ant::move(Critter*** board, int row, int col)
 	switch (direction)
 	{
 	case 1:     // Ant moving right
-		if ((col + 1 >= 0) && (col + 1 < 20))
+		if (col + 1 < maxCol)
 		{
 			if (board[row][col+1] == NULL)
 			{
@@ -49,7 +49,7 @@ void Ant::move(Critter*** board, int row, int col)
 		break;
 
 	case 2:     // Ant moving left
-		if ((col - 1 >= 0) && (col - 1 < 20))
+		if (col - 1 >= 0)
 		{
 			if (board[row][ col - 1] == NULL)
 			{
@@ -60,7 +60,7 @@ void Ant::move(Critter*** board, int row, int col)
 		break;
 
 	case 3:     // Ant moving up
-		if ((row - 1 >= 0) && (row - 1 < 20))
+		if (row - 1 >= 0)
 		{
 			if (board[row - 1][ col] == NULL)
 			{
@@ -71,7 +71,7 @@ void Ant::move(Critter*** board, int row, int col)
 		break;
 
 	case 4:     // Ant moving down
-		if ((row + 1 >= 0) && (row + 1 < 20))
+		if (row + 1 < maxRow)
 		{
 			if (board[row + 1][ col] == NULL)
 			{
