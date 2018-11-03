@@ -76,6 +76,10 @@ Board::Board(int row, int col, int ant, int doodlebug) {
   }
 }
 
+Board::~Board() {
+  cleanBoard();
+}
+
 //places a bug (0 for input for doodlebug, 1 for ant)
 void Board::placeBug(int species) {
   int eligibleSpaces = 0;

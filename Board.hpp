@@ -17,6 +17,8 @@ class Board {
 
     Board(int row, int col, int ant, int doodlebug);
 
+    ~Board();
+
     void placeDoodlebug();
 
     void placeAnts();
@@ -42,7 +44,7 @@ class Board {
     int getNumRows();
 
     void starve();
-  
+
     void cleanBoard();
 
 };
