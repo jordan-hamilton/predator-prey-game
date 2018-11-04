@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program name: Board.cpp
+** Author: Group 10
+** Date: November 3, 2018
+** Description: This is the class defines the Board class contains functions to create Critterboard, move critter, breed critter.  
+*Board class controls controls Critters and uses Critter functions.
+*********************************************************************/
 #include "Ant.hpp"
 #include "Board.hpp"
 #include "Doodlebug.hpp"
