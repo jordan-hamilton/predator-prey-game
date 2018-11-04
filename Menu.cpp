@@ -68,6 +68,9 @@ int Menu::getChoice()
 void Menu::run()
 {
     Menu menu;
+     menu.addOption("Predator-Prey Simulation");
+	menu.addOption("By Group 10: Jake Anderson, Sarah Flower, Jordan Hamilton, John Quilty, Dan Tonthat ");
+	menu.addOption("");
     menu.addOption("Enter the number of steps to run the Doodlebug/Ant simulation.");
     menu.displayMenu();
     int numSteps = menu.getChoice();
