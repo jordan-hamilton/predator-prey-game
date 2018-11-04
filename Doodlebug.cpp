@@ -1,3 +1,11 @@
+/*********************************************************************
+** Program name: Doodlebug.cpp
+** Author: Group 10
+** Date: November 3, 2018
+** Description: This is the class defines the Doodlebug class and inherits Critter Class.
+* Class contains functions for the Doodlebug to Breed and Move.
+*********************************************************************/
+
 /*The doodlebugs behave according to the following model:
 Move: For every time step, the doodlebug will firstly try to move to an adjacent cell
 containing an ant and eat the ant (you can decide if there are several ants in the adjacent cells,
