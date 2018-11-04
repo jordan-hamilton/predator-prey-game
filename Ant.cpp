@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program name: Ant.cpp
+** Author: Group 10
+** Date: November 3, 2018
+** Description: This is the class defines the Ant class and inherits Critter Class.
+*Class contains functions for the Ant to Breed and Move.
+*********************************************************************/
 #include "Ant.hpp"
 #include "Board.hpp"
 // Default constructor for Ant(), set variables to default values
