@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program name: Critter.cpp
+** Author: Group 10
+** Date: November 3, 2018
+** Description: This is the class defines the Critter class which will be inherited by Ant and Doodlebug.
+*Class contains virtual functions and functions which Ant and Doodlebug can use.
+*********************************************************************/
 #include "Critter.hpp"
 
 void Critter::incrementAge() {
