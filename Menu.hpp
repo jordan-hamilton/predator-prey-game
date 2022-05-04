@@ -5,13 +5,15 @@
 ** Description: This is the header file for the Menu class (Menu.cpp).
 ** It contains data members and functions for the Menu class.
 *********************************************************************/
+#ifndef MENU_HPP
+#define MENU_HPP
+
 #include <iostream>
 #include <vector>
 #include <string>
 #include <cstddef>
-
-#ifndef MENU_HPP
-#define MENU_HPP
+#include <algorithm>
+#include <climits>
 
 class Menu
 {
@@ -26,4 +28,5 @@ public:
     int getChoice();
     void run();
 };
+
 #endif

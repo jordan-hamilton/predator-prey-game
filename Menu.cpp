@@ -8,8 +8,6 @@
 *********************************************************************/
 #include "Menu.hpp"
 #include "Board.hpp"
-#include <algorithm>
-#include <climits>
 
 /*********************************************************************
 ** Default constructor for Menu takes no arguments.

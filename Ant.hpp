@@ -1,6 +1,7 @@
-#include <iostream>
 #ifndef ANT_HPP
 #define ANT_HPP
+
+#include <iostream>
 
 #include "Critter.hpp"
 
